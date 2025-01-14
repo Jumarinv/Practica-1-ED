@@ -1,4 +1,6 @@
 package gestorAplicacion.usuarios;
 
-public class Investigador {
+public class Investigador extends Usuario{
+
+
 }
