@@ -1,7 +1,8 @@
 package gestorAplicacion.usuarios;
+import gestorAplicacion.listas.DoubleList;
 
 public class Investigador extends Usuario{
 
-    private listas.DoubleList Equipos;
+    private DoubleList Equipos;
 
 }

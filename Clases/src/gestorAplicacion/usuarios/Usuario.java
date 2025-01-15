@@ -33,7 +33,7 @@ public class Usuario {
     }
     @Override
     public String toString() {
-        return Nombre+"/"+ id +"/"+ fecha+"/"+ ciudad+"/"+ tel+"/"+ email+"/"+ dir;
+        return Nombre+":"+ id +":"+ fecha+":"+ ciudad+":"+ tel+":"+ email+":"+ dir;
     }
     public String getNombre() {
         return Nombre;
