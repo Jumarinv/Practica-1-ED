@@ -1,4 +1,4 @@
-package listas;
+package gestorAplicacion.listas;
 
 public class DoubleNode {
     private Object data;

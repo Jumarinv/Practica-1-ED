@@ -1,4 +1,7 @@
 package gestorAplicacion.usuarios;
+import gestorAplicacion.extras.Fecha;
+import gestorAplicacion.extras.Direccion;
+
 
 public class Usuario {
     private String Nombre;

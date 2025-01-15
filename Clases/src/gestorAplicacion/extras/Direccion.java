@@ -1,3 +1,5 @@
+package gestorAplicacion.extras;
+
 public class Direccion {
     private String calle;
     private String nomenclatura;
