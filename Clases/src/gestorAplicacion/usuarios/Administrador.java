@@ -257,10 +257,8 @@ public class Administrador extends Investigador {
          agregarUsuarioArchivo(archivo1,usuario);
 
          System.out.println("Ingrese contraseña");
-         scanner.nextLine();
          String contra = scanner.nextLine();
          System.out.println("Ingrese rol");
-         scanner.nextLine();
          String rol = scanner.nextLine();
          Contraseña contraseña = new Contraseña(String.valueOf(usuario.getId()),contra,rol);
          agregarContraseña(archivo2,contraseña);
@@ -274,8 +272,7 @@ public class Administrador extends Investigador {
     }
     public static void agregarContraseña(File archivo, Contraseña objeto) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
-            bw.write(objeto.toString());
-            bw.newLine();
+            bw.write(objeto.getId()+" "+objeto.getContraseña()+" "+objeto.getRol());
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo: " + e.getMessage());
         }
@@ -283,7 +280,6 @@ public class Administrador extends Investigador {
     public static void agregarUsuarioArchivo(File archivo, Usuario objeto) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
             bw.write(objeto.toString());
-            bw.newLine();
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo: " + e.getMessage());
         }
