@@ -5,6 +5,7 @@ import gestorAplicacion.extras.Direccion;
 import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.listas.DoubleList;
 import gestorAplicacion.administacion.Contraseña;
+import gestorAplicacion.usuarios.Funcionalidad;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,12 +22,45 @@ public class Main {
     private static DoubleList contraseñas = new DoubleList();
     private static DoubleList equipos = new DoubleList();
 
-    public void IngresoAdmin () {
+    public static void ordenarEquipos () {
+
+        DoubleNode tempUser = Main.usuarios.getHead();
+
+        while (tempUser != null) {
+
+            ordenar(((Usuario) tempUser.getData()).getEquipos());
+
+            tempUser = tempUser.getNext();
+        }
 
     }
 
-    public void IngresoInvestigador() {
+    public static void intercambiar(DoubleNode node1, DoubleNode node2) {
+        Equipo temp = (Equipo) node1.getData();
+        node1.setData(node2.getData());
+        node2.setData(temp);
+    }
 
+    public static void ordenar (DoubleList L) {
+        DoubleNode current = L.getHead();
+
+        while (current != null) {
+            DoubleNode minNode = current;
+            DoubleNode temp = current.getNext();
+
+            while (temp != null) {
+                if (((Equipo) temp.getData()).getPlaca() < ((Equipo) minNode.getData()).getPlaca()) {
+                    minNode = temp;
+                }
+                temp = temp.getNext();
+            }
+
+            if (minNode != current) {
+                intercambiar(current, minNode);
+            }
+
+            current = current.getNext();
+        }
     }
 
     public static void main(String[] args) {
@@ -120,6 +154,9 @@ public class Main {
                 }
 
             }
+            //ordenamiento listas
+            ordenar(equipos);
+            ordenarEquipos();
 
             boolean acceso = true;
             Scanner lector = new Scanner(System.in);
@@ -142,9 +179,21 @@ public class Main {
                         System.out.println("Bienvenido");
                         Contraseña tempData = (Contraseña) (temp.getData());
 
+                        DoubleNode tempusuario = usuarios.first();
+
+                        while (tempusuario != null) {
+
+                            if (((Usuario) tempusuario.getData()).getId() == Long.parseLong(id)) {
+
+                                break;
+                            }
+                            tempusuario = tempusuario.getNext();
+                        }
+
                         if (tempData.getRol().equals("Administrador")){
 
                             System.out.println("Ingresaste como administrador");
+                            Funcionalidad.mostrarOpciones("administrador", (Usuario) tempusuario.getData());
                         }
 
                         else if (tempData.getRol().equals("Investigador")){
