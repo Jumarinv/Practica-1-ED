@@ -30,14 +30,14 @@ public class Direccion {
         this.nomenclatura = nomenclatura;
         this.barrio = barrio;
         this.ciudad = ciudad;
-        edificio = "No aplica";
-        apto = "No aplica";
+        edificio = "No-aplica";
+        apto = "No-aplica";
     }
 
 
     @Override
     public String toString() {
-        return "Direccion " + calle + " #" + nomenclatura + " Barrio = " + barrio + " Ciudad= " + ciudad + " Edificio= " + edificio + " Apartamento= " + apto;
+        return calle + " " + nomenclatura + " " + barrio + " " + ciudad + " " + edificio + " " + apto;
 
     }
 

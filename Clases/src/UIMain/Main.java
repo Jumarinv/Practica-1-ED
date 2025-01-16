@@ -1,7 +1,9 @@
 package UIMain;
 
+import gestorAplicacion.extras.Direccion;
 import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.listas.DoubleList;
+import gestorAplicacion.administacion.Contraseña;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +15,15 @@ import gestorAplicacion.usuarios.Usuario;
 public class Main {
 
     private static DoubleList usuarios = new DoubleList();
+    private static DoubleList contraseñas = new DoubleList();
+
+    public void IngresoAdmin () {
+
+    }
+
+    public void IngresoInvestigador() {
+
+    }
 
     public static void main(String[] args) {
 
@@ -32,6 +43,7 @@ public class Main {
                 for (int l = 0; l < usuarios.length; l++) {
 
                     String [] user = usuarios[l].toUpperCase().split(":");
+
                     String nombre = user[0];
                     long id = Long.parseLong(user[1]);
                     String [] tempFecha = user[2].split("/");
@@ -39,10 +51,45 @@ public class Main {
                     String ciudad = user[3];
                     Long tel = Long.parseLong(user[4]);
                     String correo = user[5];
-                    String [] tempdir = user[6].split()
-                    Usuario tempuser = new Usuario ();
+                    String [] tempdir = user[6].split(" ");
+                    Direccion direccion = new Direccion(tempdir[0],tempdir[1],tempdir[2],tempdir[3],tempdir[4],tempdir[5]);
+
+                    Usuario tempuser = new Usuario (nombre, id, fecha, ciudad, tel, correo, direccion);
+                    Main.usuarios.addLast(tempuser);
                 }
             }
+
+            File archivoContraseñas = new File(archivo1.getAbsolutePath()+ "/Clases/src/baseDeDatos/Password.txt");
+            Scanner scanner = new Scanner(archivoContraseñas);
+
+            while (scanner.hasNextLine()) {
+
+                String[] contras = scanner.nextLine().split("\n");
+
+                for (int l = 0; l < contras.length; l++) {
+
+                    String [] userpassword = contras[l].split(" ");
+
+                    //Print contraseñas e id
+                    System.out.println(userpassword[0] + " " + userpassword[1]);
+
+                    Contraseña tempcontraseña = new Contraseña(userpassword[0], userpassword[1], userpassword[2]);
+                    Main.contraseñas.addLast(tempcontraseña);
+
+                }
+
+            }
+
+            boolean acceso = true;
+
+            while (acceso) {
+
+                
+
+                
+            }
+
+
 
         }catch (FileNotFoundException e) {
 
