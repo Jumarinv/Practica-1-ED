@@ -1,6 +1,7 @@
 package gestorAplicacion.usuarios;
 
 import gestorAplicacion.administacion.Equipo;
+import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.listas.DoubleList;
 import gestorAplicacion.listas.DoubleNode;
 
@@ -8,11 +9,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import static gestorAplicacion.usuarios.Administrador.cambiarContrasena;
+import static gestorAplicacion.usuarios.Administrador.eliminarUsuario;
+import static gestorAplicacion.usuarios.Investigador.*;
+
 public class Funcionalidad {
     private static DoubleList Solicitudes = new DoubleList();
     private static Scanner scann = new Scanner (System.in);
 
-    public static void mostrarOpciones(String tipoUsuario, Usuario usuario) {
+    public static void mostrarOpciones(String tipoUsuario, Usuario usuario) throws IOException {
         if (tipoUsuario.equalsIgnoreCase("investigador")) {
             System.out.println("Opciones para Investigador:");
             System.out.println("1. Consultar lista de equipos en su inventario.");
@@ -27,14 +32,26 @@ public class Funcionalidad {
             switch (opcion) {
 
                 case 1:
-
+                    mostrarInventario(usuario);
                     break;
 
                 case 2:
+                    System.out.println("Ingresa los datos (nombre, placa, fechaCompra, precio) separados por comas:");
+
+                    String input = scann.nextLine();
+                    String[] datos = input.split(",");
+                    short dd= Short.parseShort(datos[2]);
+                    short mm=Short.parseShort(datos[3]);
+                    short aa=Short.parseShort(datos[4]);
+                    Fecha fechaCompra = new Fecha(dd,mm,aa);
+                    solicitudAgregarEquipo(usuario,datos[0], Long.parseLong(datos[1]), fechaCompra,Long.parseLong(datos[5]));
 
                     break;
 
                 case 3:
+                    System.out.println("Ingrese el numero de la placa del equipo que desea eliminar");
+                    Long placa = scann.nextLong();
+                    solicitudEliminarEquipo(usuario,placa);
 
                     break;
 
@@ -75,10 +92,21 @@ public class Funcionalidad {
                     break;
 
                 case 2:
+                    System.out.println("Ingresa los datos (nombre, placa, fechaCompra, precio) separados por comas:");
+                    String input = scann.nextLine();
+                    String[] datos = input.split(",");
+                    short dd= Short.parseShort(datos[2]);
+                    short mm=Short.parseShort(datos[3]);
+                    short aa=Short.parseShort(datos[4]);
+                    Fecha fechaCompra = new Fecha(dd,mm,aa);
+                    solicitudAgregarEquipo(usuario,datos[0], Long.parseLong(datos[1]), fechaCompra,Long.parseLong(datos[5]));
 
                     break;
 
                 case 3:
+                    System.out.println("Ingrese el numero de la placa del equipo que desea eliminar");
+                    Long placa = scann.nextLong();
+                    solicitudEliminarEquipo(usuario,placa);
 
                     break;
 
@@ -87,10 +115,17 @@ public class Funcionalidad {
                     break;
 
                 case 5:
+                    System.out.println("Ingrese id de usuario y la nueva contraseña separada por comas para realizar el cambio de contraseña");
+                    String entrada = scann.nextLine();
+                    String[] datos1 = entrada.split(",");
+                    cambiarContrasena(datos1[0], datos1[1], "archivo.txt");
 
                     break;
 
                 case 6:
+                    System.out.println("Ingrese el id del usuario que desea eliminar");
+                    String entrada1 = scann.nextLine();
+                    eliminarUsuario(entrada1, "archivo.txt");
 
                     break;
 

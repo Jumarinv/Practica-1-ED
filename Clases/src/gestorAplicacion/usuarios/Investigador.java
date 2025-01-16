@@ -14,7 +14,7 @@ public class Investigador {
     public Investigador() {
     }
 
-    public void solicitudAgregarEquipo(Usuario investigador,String nombre, long placa, Fecha fechaCompra, long precio) {
+    public static void solicitudAgregarEquipo(Usuario investigador,String nombre, long placa, Fecha fechaCompra, long precio) {
         Equipo equipoNuevo = new Equipo(nombre, placa, fechaCompra, precio, investigador.getId());
         Solicitud solicitud = new Solicitud(investigador,equipoNuevo,"pendiente","Agregar");
         investigador.addSolicitudes(solicitud);

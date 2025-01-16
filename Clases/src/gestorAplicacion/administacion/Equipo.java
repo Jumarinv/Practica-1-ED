@@ -63,5 +63,5 @@ public class Equipo {
     public String toString() {
         return (nombre+ ":" + placa + ":" + fechaCompra + ":" + precio + ":" + idDueño);
     }
-    
+
 }
