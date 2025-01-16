@@ -2,6 +2,7 @@ package gestorAplicacion.usuarios;
 
 import UIMain.Main;
 import gestorAplicacion.administacion.Equipo;
+import gestorAplicacion.administacion.Solicitud;
 import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.listas.DoubleList;
 import gestorAplicacion.listas.DoubleNode;
@@ -254,6 +255,40 @@ public class Funcionalidad {
             contador++;
         }
 
+    }
+
+    public static void aceptarDenegar () {
+
+        Scanner scan = new Scanner(System.in);
+
+        DoubleNode temp = Solicitud.getSolicitudes().getHead();
+
+        while (temp != null) {
+
+            if (((Solicitud) temp.getData()).getEstado().equals("pendiente")) {
+
+                System.out.println(temp.getData());
+
+                System.out.println("Desea Aprobar la solicitud?");
+                System.out.println("1. Aprobar");
+                System.out.println("2. Denegar");
+
+                int opcion = scan.nextInt();
+
+                if (opcion == 1) {
+
+                    ((Solicitud) temp.getData()).setEstado("aprobada");
+                    solicitudesAprobadas.addLast(temp.getData());
+                }
+
+                else if (opcion ==  2) {
+
+                    ((Solicitud) temp.getData()).setEstado("denegada");
+                }
+            }
+
+            temp = temp.getNext();
+        }
     }
 
 

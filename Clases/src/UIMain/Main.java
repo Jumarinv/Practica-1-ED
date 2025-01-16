@@ -266,7 +266,7 @@ public class Main {
                 else if (opcion == 2) {
 
                     System.out.println("Guardando");
-
+                    System.exit(1);
                     acceso = false;
 
                 }
