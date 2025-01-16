@@ -191,10 +191,11 @@ public class Main {
         try {
 
             boolean acceso = true;
-            Scanner lector = new Scanner(System.in);
+
 
             while (acceso) {
 
+                Scanner lector = new Scanner(System.in);
                 Scanner lector1 = new Scanner(System.in);
                 imprimir();
                 int opcion = lector1.nextInt();
@@ -204,14 +205,18 @@ public class Main {
 
                     DoubleNode temp = contraseñas.getHead();
 
+                    System.out.println("Ingrese su ID");
+                    String id = lector.nextLine();
+                    System.out.println("Ingrese su contraseña");
+                    String contraseña = lector.nextLine();
+
+                    System.out.println(id + " " + contraseña);
+
                     while (temp != null){
 
-                        System.out.println("Ingrese su ID");
-                        String id = lector.nextLine();
-                        System.out.println("Ingrese su contraseña");
-                        String contraseña = lector.nextLine();
 
-                        System.out.println(id + " " + contraseña);
+
+                        //System.out.println(((Contraseña) (temp.getData())).getId() + " " + );
 
                         if (((Contraseña) (temp.getData())).getId().equals(id) && (((Contraseña) (temp.getData())).getContraseña().equals(contraseña)))  {
 
@@ -253,12 +258,15 @@ public class Main {
                         else {
 
                             System.out.println("Ingrese un ID y contraseña validos");
-                            continue;
+
                         }
 
 
                         temp = temp.getNext();
                     }
+
+                    lector.next();
+                    iniciarSesion();
 
 
                 }
