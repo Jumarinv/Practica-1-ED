@@ -56,15 +56,15 @@ public class Funcionalidad {
                     break;
 
                 case 4:
-
+                    MostrarEstadoSolicitud(usuario);
                     break;
 
                 case 5:
-
+                    GenerarInventario(usuario);
                     break;
 
                 case 6:
-
+                    GenerarSolicitud(usuario);
                     break;
 
             }

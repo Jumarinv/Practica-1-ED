@@ -1,6 +1,7 @@
 package gestorAplicacion.usuarios;
 
 import UIMain.Main;
+import gestorAplicacion.administacion.Solicitud;
 import gestorAplicacion.extras.Direccion;
 import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.listas.DoubleList;
@@ -121,6 +122,58 @@ public class Administrador extends Investigador {
         }
 
 
+    }
+    public static void GenerarControlCambios(DoubleList cambios){
+        String fileName = "ControlDeCambios.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            DoubleNode fir = cambios.first();
+            while (fir != null) {
+                writer.write(fir.getData().imprimirCambios());
+                writer.newLine();
+                fir = fir.getNext();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + fileName);
+        }
+
+    }
+    public static void GenerarPendientesAgregar(DoubleList agregar){
+        String fileName = "ControlDeCambios.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            DoubleNode fir = agregar.first();
+            while (fir != null) {
+                writer.write(fir.getData().imprimiragregar());
+                writer.newLine();
+                fir = fir.getNext();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + fileName);
+        }
+
+    }
+    public static void GenerarPendientesEliminar(DoubleList eliminar){
+        String fileName = "ControlDeCambios.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            DoubleNode fir = eliminar.first();
+            while (fir != null) {
+                writer.write(fir.getData().imprimiragregar());
+                writer.newLine();
+                fir = fir.getNext();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + fileName);
+        }
+
+    }
+    public static void ConsultarCambios(DoubleList cambios){
+        DoubleNode fir = cambios.first();
+        while(fir != null) {
+            System.out.println(((Solicitud)fir.getData()).imprimirCambios());
+            fir = fir.getNext();
+        }
     }
 }
 
