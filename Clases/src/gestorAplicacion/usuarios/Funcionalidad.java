@@ -141,19 +141,19 @@ public class Funcionalidad {
                      Generarinventarioinvestigador(usuario);
                     break;
                 case 9:
-                    GenerarinventarioGeneral(usuario);
+                    GenerarinventarioGeneral(usuarios);
                     break;
                 case 10:
-                    GenerarControlCambios(usuario);
+                    GenerarControlCambios(solicitudesAprobadas);
                     break;
                 case 11:
-                    GenerarPendientesAgregar(usuario);
+                    GenerarPendientesAgregar(solicitudesAgregar);
                     break;
                 case 12:
-                    GenerarPendientesEliminar(usuario);
+                    GenerarPendientesEliminar(solicitudesEliminar);
                     break;
                 case 13:
-                    ConsultarCambios(usuario);
+                    ConsultarCambios(solicitudesAprobadas);
                     break;
 
             }
