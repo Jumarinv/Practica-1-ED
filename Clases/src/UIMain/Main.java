@@ -267,17 +267,14 @@ public class Main {
 
                         }
 
-                        else {
 
-                            System.out.println("Ingrese un ID y contraseña validos");
-
-                        }
 
 
                         temp = temp.getNext();
                     }
 
                     lector.next();
+                    System.out.println("Ingrese un ID y contraseña validos");
                     iniciarSesion();
 
 
