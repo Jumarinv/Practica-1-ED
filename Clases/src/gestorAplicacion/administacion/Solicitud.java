@@ -191,4 +191,13 @@ public class Solicitud {
     public  String imprimirCambios(){
         return tipoSolicitud + ":" +equipo.toString();
     }
+    public static DoubleList getC(){
+        return solicitudesAprobadas;
+    }
+    public static DoubleList getA(){
+        return solicitudesAgregar;
+    }
+    public static DoubleList getE(){
+        return solicitudesEliminar;
+    }
 }

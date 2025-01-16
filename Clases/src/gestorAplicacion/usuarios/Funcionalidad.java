@@ -1,5 +1,6 @@
 package gestorAplicacion.usuarios;
 
+import UIMain.Main;
 import gestorAplicacion.administacion.Equipo;
 import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.listas.DoubleList;
@@ -9,6 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import static UIMain.Main.*;
+import static gestorAplicacion.administacion.Solicitud.*;
 import static gestorAplicacion.usuarios.Administrador.*;
 import static gestorAplicacion.usuarios.Investigador.*;
 
@@ -141,19 +144,19 @@ public class Funcionalidad {
                      Generarinventarioinvestigador(usuario);
                     break;
                 case 9:
-                    GenerarinventarioGeneral(usuarios);
+                    GenerarinventarioGeneral();
                     break;
                 case 10:
-                    GenerarControlCambios(solicitudesAprobadas);
+                    GenerarControlCambios(getC());
                     break;
                 case 11:
-                    GenerarPendientesAgregar(solicitudesAgregar);
+                    GenerarPendientesAgregar(getA());
                     break;
                 case 12:
-                    GenerarPendientesEliminar(solicitudesEliminar);
+                    GenerarPendientesEliminar(getE());
                     break;
                 case 13:
-                    ConsultarCambios(solicitudesAprobadas);
+                    ConsultarCambios(getC());
                     break;
 
             }
