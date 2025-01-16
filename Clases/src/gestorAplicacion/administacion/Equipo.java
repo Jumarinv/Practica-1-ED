@@ -63,9 +63,5 @@ public class Equipo {
     public String toString() {
         return (nombre+ ":" + placa + ":" + fechaCompra + ":" + precio + ":" + idDueño);
     }
-
-    public long getPlaca (){
-
-        return this.placa;
-    }
+    
 }
