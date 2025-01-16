@@ -190,10 +190,11 @@ public class Funcionalidad {
                         File archivo2= new File ("");
                         System.out.println(archivo2.getAbsolutePath());
                         File archivo = new File(archivo2.getAbsolutePath()+ "/Clases/src/baseDeDatos/Empleados.txt");
+                        File archivoContraseñas2 = new File(archivo2.getAbsolutePath()+ "/Clases/src/baseDeDatos/Password.txt");
                         System.out.println("Ingrese el id del usuario que desea eliminar");
                         scann.nextLine();
                         String entrada1 = scann.nextLine();
-                        eliminarUsuario(entrada1,archivo);
+                        eliminarUsuario(entrada1,archivo,archivoContraseñas2);
 
                         break;
 

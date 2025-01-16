@@ -52,37 +52,63 @@ public class Administrador extends Investigador {
         }
     }
 
-    public static void eliminarUsuario(String idUsuario, File archivo) {
-        List<String> lineas = new ArrayList<>();
-        boolean eliminado = false;
+    public static void eliminarUsuario(String idUsuario, File archivo1, File archivo2) {
+        List<String> lineas1 = new ArrayList<>();
+        List<String> lineas2 = new ArrayList<>();
+        boolean eliminado1 = false;
+        boolean eliminado2 = false;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo1))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split(" ");
+                String[] partes = linea.split(":");
                 if (partes.length > 1 && partes[1].equals(idUsuario)) {
-                    eliminado = true;
+                    eliminado1 = true;
                 } else {
-                    lineas.add(linea);
+                    lineas1.add(linea);
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
+            System.out.println("Error al leer el archivo 1: " + e.getMessage());
             return;
         }
 
-        if (!eliminado) {
-            System.out.println("Usuario no encontrado en el archivo.");
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo2))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(":");
+                if (partes.length > 1 && partes[0].equals(idUsuario)) {
+                    eliminado2 = true;
+                } else {
+                    lineas2.add(linea);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo 2: " + e.getMessage());
             return;
         }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
-            for (String l : lineas) {
+        if (!eliminado1 && !eliminado2) {
+            System.out.println("Usuario no encontrado en ninguno de los archivos.");
+            return;
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo1))) {
+            for (String l : lineas1) {
                 bw.write(l);
                 bw.newLine();
             }
         } catch (IOException e) {
-            System.out.println("Error al escribir en el archivo: " + e.getMessage());
+            System.out.println("Error al escribir en el archivo 1: " + e.getMessage());
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo2))) {
+            for (String l : lineas2) {
+                bw.write(l);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo 2: " + e.getMessage());
         }
     }
 
