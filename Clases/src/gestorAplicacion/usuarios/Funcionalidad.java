@@ -9,8 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static gestorAplicacion.usuarios.Administrador.cambiarContrasena;
-import static gestorAplicacion.usuarios.Administrador.eliminarUsuario;
+import static gestorAplicacion.usuarios.Administrador.*;
 import static gestorAplicacion.usuarios.Investigador.*;
 
 public class Funcionalidad {
@@ -79,7 +78,12 @@ public class Funcionalidad {
             System.out.println("5. Cambiar contraseñas.");
             System.out.println("6. Eliminar un usuario.");
             System.out.println("7. Responder solicitudes de investigadores.");
-            System.out.println("8. Generar archivos de control e inventario.");
+            System.out.println("8. Generar inventario de investigador");
+            System.out.println("9. Generar inventario del centro de investigación");
+            System.out.println("10. Generar archivo de control de cambios");
+            System.out.println("11. Generar archivo de solicitudes pendientes para agregar");
+            System.out.println("12. Generar archivo de solicitudes pendientes para eliminar");
+            System.out.println("13. Consultar control de cambios");
 
             int opcion = scann.nextInt();
 
@@ -134,7 +138,22 @@ public class Funcionalidad {
                     break;
 
                 case 8:
-
+                     Generarinventarioinvestigador(usuario);
+                    break;
+                case 9:
+                    GenerarinventarioGeneral(usuario);
+                    break;
+                case 10:
+                    GenerarControlCambios(usuario);
+                    break;
+                case 11:
+                    GenerarPendientesAgregar(usuario);
+                    break;
+                case 12:
+                    GenerarPendientesEliminar(usuario);
+                    break;
+                case 13:
+                    ConsultarCambios(usuario);
                     break;
 
             }
