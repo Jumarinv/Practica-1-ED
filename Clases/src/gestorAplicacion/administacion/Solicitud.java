@@ -19,6 +19,11 @@ public class Solicitud {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return usuario.getNombre() + ":" + usuario.getId() + ":" + equipo.toString() + ":" + estado;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }

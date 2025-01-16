@@ -43,6 +43,18 @@ public class Investigador {
 
     }
     public static void GenerarSolicitud (Usuario usuario){
+        String fileName = "Solicitudes.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            DoubleNode fir = usuario.getSolicitudes().first();
+            while (fir != null) {
+                writer.write(fir.getData().toString());
+                writer.newLine();
+                fir = fir.getNext();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + fileName);
+        }
 
     }
 }
