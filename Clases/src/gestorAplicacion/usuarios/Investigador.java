@@ -1,7 +1,10 @@
 package gestorAplicacion.usuarios;
 import gestorAplicacion.administacion.Equipo;
 import gestorAplicacion.extras.Fecha;
-import gestorAplicacion.listas.DoubleList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import gestorAplicacion.listas.*;
 
 public class Investigador {
     private Usuario investigador;
@@ -15,10 +18,8 @@ public class Investigador {
         System.out.println("Solicitud de agregar equipo: " + equipoNuevo.toString());
     }
 
-    public void GenerarInventario
-
-    {
-        fileName = "Inventario.txt";
+    public void GenerarInventario (){
+        String fileName = "Inventario.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = investigador.equipos.first();
