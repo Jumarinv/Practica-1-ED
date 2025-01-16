@@ -64,6 +64,14 @@ public class Main {
         }
     }
 
+    public static void imprimir () {
+
+        System.out.println("Elija una opcion");
+        System.out.println("1. Ingresar");
+        System.out.println("2. Guardar y salir");
+
+    }
+
     public static void main(String[] args) {
 
 
@@ -164,59 +172,81 @@ public class Main {
 
             while (acceso) {
 
-                DoubleNode temp = contraseñas.getHead();
+                Scanner lector1 = new Scanner(System.in);
+                imprimir();
+                int opcion = lector1.nextInt();
 
-                while (temp != null){
+                if (opcion == 1) {
 
-                    System.out.println("Ingrese su ID");
-                    String id = lector.nextLine();
-                    System.out.println("Ingrese su contraseña");
-                    String contraseña = lector.nextLine();
 
-                    System.out.println(id + " " + contraseña);
+                    DoubleNode temp = contraseñas.getHead();
 
-                    if (((Contraseña) (temp.getData())).getId().equals(id) && (((Contraseña) (temp.getData())).getContraseña().equals(contraseña)))  {
+                    while (temp != null){
 
-                        System.out.println("Bienvenido");
-                        Contraseña tempData = (Contraseña) (temp.getData());
+                        System.out.println("Ingrese su ID");
+                        String id = lector.nextLine();
+                        System.out.println("Ingrese su contraseña");
+                        String contraseña = lector.nextLine();
 
-                        DoubleNode tempusuario = usuarios.first();
+                        System.out.println(id + " " + contraseña);
 
-                        while (tempusuario != null) {
+                        if (((Contraseña) (temp.getData())).getId().equals(id) && (((Contraseña) (temp.getData())).getContraseña().equals(contraseña)))  {
 
-                            if (((Usuario) tempusuario.getData()).getId() == Long.parseLong(id)) {
+                            System.out.println("Bienvenido");
+                            Contraseña tempData = (Contraseña) (temp.getData());
 
-                                break;
+                            DoubleNode tempusuario = usuarios.first();
+
+                            while (tempusuario != null) {
+
+                                if (((Usuario) tempusuario.getData()).getId() == Long.parseLong(id)) {
+
+                                    break;
+                                }
+                                tempusuario = tempusuario.getNext();
                             }
-                            tempusuario = tempusuario.getNext();
+
+                            if (tempData.getRol().equals("Administrador")){
+
+                                System.out.println("Ingresaste como administrador");
+                                Funcionalidad.mostrarOpciones("administrador", (Usuario) tempusuario.getData());
+                                lector1.next();
+
+                            }
+
+                            else if (tempData.getRol().equals("Investigador")){
+
+                                System.out.println("Ingresaste como investigador");
+                                Funcionalidad.mostrarOpciones("investigador", (Usuario) tempusuario.getData());
+                                lector1.next();
+
+
+                            }
+
+
+
                         }
 
-                        if (tempData.getRol().equals("Administrador")){
+                        else {
 
-                            System.out.println("Ingresaste como administrador");
-                            Funcionalidad.mostrarOpciones("administrador", (Usuario) tempusuario.getData());
-                        }
-
-                        else if (tempData.getRol().equals("Investigador")){
-
-                            System.out.println("Ingresaste como investigador");
-
+                            System.out.println("Ingrese un ID y contraseña validos");
+                            continue;
                         }
 
 
-
+                        temp = temp.getNext();
                     }
 
-                    else {
 
-                        System.out.println("Ingrese un ID y contraseña validos");
-                        continue;
-                    }
-
-
-                    temp = temp.getNext();
                 }
 
+                else if (opcion == 2) {
+
+                    System.out.println("Guardando");
+
+                    acceso = false;
+
+                }
 
 
                 
