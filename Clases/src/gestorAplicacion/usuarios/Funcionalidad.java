@@ -114,7 +114,7 @@ public class Funcionalidad {
                         break;
 
                     case 2:
-                        System.out.println("Ingresa los datos (nombre, placa, día, mes, año, precio) separados por comas:");
+                        System.out.println("Ingresa los datos nombre, placa(numero), día(numero), mes(numero), año(numero), precio(numero) separados por comas:");
                         scann.nextLine();
                         String input = scann.nextLine().trim();
 
