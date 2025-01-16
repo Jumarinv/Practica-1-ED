@@ -1,4 +1,5 @@
 package gestorAplicacion.usuarios;
+import gestorAplicacion.administacion.Solicitud;
 import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.extras.Direccion;
 import gestorAplicacion.listas.DoubleList;
@@ -13,6 +14,7 @@ public class Usuario {
     private String email;
     private Direccion dir;
     public DoubleList equipos;
+    private DoubleList solicitudes = new DoubleList();
 
     public Usuario() {
         super();
@@ -80,6 +82,9 @@ public class Usuario {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+    public void addSolicitudes(Solicitud solicitud){
+        solicitudes.addLast(solicitud);
     }
 
 
