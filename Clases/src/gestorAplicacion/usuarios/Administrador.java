@@ -1,5 +1,7 @@
 package gestorAplicacion.usuarios;
 
+import gestorAplicacion.listas.DoubleNode;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -79,5 +81,19 @@ public class Administrador extends Investigador {
         }
 
         System.out.println("Usuario eliminado.");
+    }
+    public static void Generarinventarioinvestigador (Usuario usuario){
+        String fileName = "Inventario.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            DoubleNode fir = usuario.equipos.first();
+            while (fir != null) {
+                writer.write(fir.getData().toString());
+                writer.newLine();
+                fir = fir.getNext();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + fileName);
+        }
     }
 }
