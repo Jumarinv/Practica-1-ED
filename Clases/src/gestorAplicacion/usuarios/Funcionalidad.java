@@ -122,14 +122,14 @@ public class Funcionalidad {
                     System.out.println("Ingrese id de usuario y la nueva contraseña separada por comas para realizar el cambio de contraseña");
                     String entrada = scann.nextLine();
                     String[] datos1 = entrada.split(",");
-                    cambiarContrasena(datos1[0], datos1[1], "archivo.txt");
+                    cambiarContrasena(datos1[0], datos1[1], "Password.txt");
 
                     break;
 
                 case 6:
                     System.out.println("Ingrese el id del usuario que desea eliminar");
                     String entrada1 = scann.nextLine();
-                    eliminarUsuario(entrada1, "archivo.txt");
+                    eliminarUsuario(entrada1, "Empleado.txt");
 
                     break;
 
