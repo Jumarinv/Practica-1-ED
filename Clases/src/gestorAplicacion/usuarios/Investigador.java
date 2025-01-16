@@ -17,6 +17,12 @@ public class Investigador {
         investigador.addSolicitudes(solicitud);
         System.out.println("Solicitud de agregar equipo: " + equipoNuevo.toString());
     }
+    public static void mostrarInventario(Usuario investigador){
+
+    }
+    public static void solicitudEliminarEquipo(Usuario investigador){
+
+    }
 
     public void GenerarInventario
 

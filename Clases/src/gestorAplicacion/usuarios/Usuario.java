@@ -87,6 +87,20 @@ public class Usuario {
         solicitudes.addLast(solicitud);
     }
 
+    public DoubleList getEquipos() {
+        return equipos;
+    }
 
+    public void setEquipos(DoubleList equipos) {
+        this.equipos = equipos;
+    }
+
+    public DoubleList getSolicitudes() {
+        return solicitudes;
+    }
+
+    public void setSolicitudes(DoubleList solicitudes) {
+        this.solicitudes = solicitudes;
+    }
 }
 
