@@ -17,7 +17,7 @@ public class Solicitud {
     private static DoubleList solicitudes = new DoubleList ();
     private static DoubleList solicitudesAgregar = new DoubleList();
     private static DoubleList solicitudesEliminar = new DoubleList();
-    private static DoubleList solicitudesAprobadas = new DoubleList();
+    public static DoubleList solicitudesAprobadas = new DoubleList();
 
     public Solicitud() {
         usuario = null;
@@ -199,5 +199,10 @@ public class Solicitud {
     }
     public static DoubleList getE(){
         return solicitudesEliminar;
+    }
+
+    public static DoubleList getSolicitudes () {
+
+        return solicitudes;
     }
 }
