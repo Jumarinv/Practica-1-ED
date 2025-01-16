@@ -13,6 +13,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
+import static UIMain.Main.agregarUsuario;
+import static UIMain.Main.usuarios;
+
 public class Administrador extends Investigador {
     public static void cambiarContrasena(String idUsuario, String nuevaContrasena, String archivo) throws IOException {
         File file = new File(archivo);
@@ -175,6 +178,50 @@ public class Administrador extends Investigador {
             fir = fir.getNext();
         }
     }
+
+    public static Usuario crearUsuarioDesdeConsola(Scanner scanner) {
+        System.out.print("Nombre: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("ID: ");
+        long id = Long.parseLong(scanner.nextLine());
+
+        System.out.print("Fecha de nacimiento (dd mm aaaa): ");
+        short dd = Short.parseShort(scanner.next());
+        short mm = Short.parseShort(scanner.next());
+        short aa = Short.parseShort(scanner.next());
+        scanner.nextLine();
+
+        Fecha fecha = new Fecha(dd, mm, aa);
+
+        System.out.print("Ciudad: ");
+        String ciudad = scanner.nextLine();
+
+        System.out.print("Teléfono: ");
+        long tel = Long.parseLong(scanner.nextLine());
+
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Calle: ");
+        String calle = scanner.nextLine();
+
+        System.out.print("Nomenclatura: ");
+        String nomenclatura = scanner.nextLine();
+
+        System.out.print("Barrio: ");
+        String barrio = scanner.nextLine();
+
+        System.out.print("Ciudad de la dirección: ");
+        String ciudadDireccion = scanner.nextLine();
+
+        Direccion direccion = new Direccion(calle, nomenclatura, barrio, ciudadDireccion);
+
+        return new Usuario(nombre, id, fecha, ciudad, tel, email, direccion);
+    }
+     public static void crearUsuario(Scanner scanner){
+         agregarUsuario(crearUsuarioDesdeConsola(scanner));
+     }
 }
 
 

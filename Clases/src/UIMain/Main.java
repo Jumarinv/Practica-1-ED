@@ -238,4 +238,8 @@ public class Main {
     public static DoubleList getUsuarios() {
         return usuarios;
     }
+    public static void agregarUsuario(Usuario usuario){
+        usuarios.addLast(usuario);
+
+    }
 }
