@@ -1,6 +1,7 @@
 package gestorAplicacion.usuarios;
 
 import UIMain.Main;
+import gestorAplicacion.administacion.Contraseña;
 import gestorAplicacion.administacion.Solicitud;
 import gestorAplicacion.extras.Direccion;
 import gestorAplicacion.extras.Fecha;
@@ -24,7 +25,7 @@ public class Administrador extends Investigador {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split(" ");
+                String[] partes = linea.split(":");
                 if (partes.length == 3 && partes[0].equals(id)) {
                     lineas.add(id + " " + nuevaContraseña + " " + partes[2]);
                     encontrado = true;
@@ -205,52 +206,86 @@ public class Administrador extends Investigador {
 
     public static Usuario crearUsuarioDesdeConsola(Scanner scanner) {
         System.out.print("Nombre: ");
+        scanner.nextLine();
         String nombre = scanner.nextLine();
 
         System.out.print("ID: ");
         long id = Long.parseLong(scanner.nextLine());
 
-        System.out.print("Fecha de nacimiento (dd mm aaaa): ");
+        System.out.print("Fecha de nacimiento (dd mm aaaa): ingrese cada dato 1 por 1 y le da enter ");
         short dd = Short.parseShort(scanner.next());
         short mm = Short.parseShort(scanner.next());
         short aa = Short.parseShort(scanner.next());
-        scanner.nextLine();
+
 
         Fecha fecha = new Fecha(dd, mm, aa);
 
         System.out.print("Ciudad: ");
+        scanner.nextLine();
         String ciudad = scanner.nextLine();
 
         System.out.print("Teléfono: ");
         long tel = Long.parseLong(scanner.nextLine());
 
         System.out.print("Email: ");
+
         String email = scanner.nextLine();
 
         System.out.print("Calle: ");
+
         String calle = scanner.nextLine();
 
         System.out.print("Nomenclatura: ");
+
         String nomenclatura = scanner.nextLine();
 
         System.out.print("Barrio: ");
+
         String barrio = scanner.nextLine();
 
         System.out.print("Ciudad de la dirección: ");
+
         String ciudadDireccion = scanner.nextLine();
 
         Direccion direccion = new Direccion(calle, nomenclatura, barrio, ciudadDireccion);
 
         return new Usuario(nombre, id, fecha, ciudad, tel, email, direccion);
     }
-     public static void crearUsuario(Scanner scanner){
-         agregarUsuario(crearUsuarioDesdeConsola(scanner));
+     public static void crearUsuario(Scanner scanner,File archivo1, File archivo2){
+        Usuario usuario = crearUsuarioDesdeConsola(scanner);
+         agregarUsuario(usuario);
+         agregarUsuarioArchivo(archivo1,usuario);
+
+         System.out.println("Ingrese contraseña");
+         scanner.nextLine();
+         String contra = scanner.nextLine();
+         System.out.println("Ingrese rol");
+         scanner.nextLine();
+         String rol = scanner.nextLine();
+         Contraseña contraseña = new Contraseña(String.valueOf(usuario.getId()),contra,rol);
+         agregarContraseña(archivo2,contraseña);
      }
     public static void Consultaragregar(DoubleList agregar){
         DoubleNode fir = agregar.first();
         while(fir != null) {
             System.out.println(((Solicitud)fir.getData()).imprimirCambios());
             fir = fir.getNext();
+        }
+    }
+    public static void agregarContraseña(File archivo, Contraseña objeto) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
+            bw.write(objeto.toString());
+            bw.newLine();
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + e.getMessage());
+        }
+    }
+    public static void agregarUsuarioArchivo(File archivo, Usuario objeto) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
+            bw.write(objeto.toString());
+            bw.newLine();
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
     public static void Consultareliminar(DoubleList eliminar){

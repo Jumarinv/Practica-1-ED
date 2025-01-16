@@ -171,6 +171,10 @@ public class Funcionalidad {
                         break;
 
                     case 4:
+                        File archivo0 = new File ("");
+                        File archivoContraseñas1 = new File(archivo0.getAbsolutePath()+ "/Clases/src/baseDeDatos/Password.txt");
+                        File archivo3 = new File(archivo0.getAbsolutePath()+ "/Clases/src/baseDeDatos/Empleados.txt");
+                        crearUsuario(scann,archivo3,archivoContraseñas1);
 
                         break;
 
