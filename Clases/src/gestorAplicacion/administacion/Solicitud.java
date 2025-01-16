@@ -24,7 +24,10 @@ public class Solicitud {
 
     @Override
     public String toString() {
-        return usuario.getNombre() + ":" + usuario.getId() + ":" + equipo.toString() + ":" + estado;
+        return usuario.getNombre() + ":" + usuario.getId() + ":" + equipo.toString() + ":" + ":" + tipoSolicitud + ":" + estado;
+    }
+    public String toString2() {
+       return estado + ":" + tipoSolicitud + ":" +equipo.toString();
     }
 
     public Usuario getUsuario() {

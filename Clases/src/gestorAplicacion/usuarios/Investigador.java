@@ -70,4 +70,11 @@ public class Investigador {
         }
 
     }
+    public static void MostrarEstadoSolicitud(Usuario usuario){
+        DoubleNode fir = usuario.getSolicitudes().first();
+        while(fir != null) {
+            System.out.println(((Solicitud)fir.getData()).toString2());
+            fir = fir.getNext();
+        }
+    }
 }
