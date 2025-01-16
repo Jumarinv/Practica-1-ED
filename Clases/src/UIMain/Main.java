@@ -320,12 +320,13 @@ public class Main {
             System.out.println("Error al escribir en el archivo: " + fileName);
         }
     }
-    public static void GenerarSolicitudes(){
+    public static void GenerarSolicitudes() {
         DoubleList solicitudes= getSolicitudes();
-        String fileName = "BaseDeDatos/Solicitudes.txt";
+        File archivo1 = new File ("");
+        String fileName = archivo1.getAbsolutePath() + "/Clases/src/baseDeDatos/Solicitudes.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            DoubleNode fir = usuarios.first();
+            DoubleNode fir = Solicitud.getSolicitudes().first();
             while (fir != null) {
                 writer.write(((Solicitud)fir.getData()).toString2());
                 writer.newLine();

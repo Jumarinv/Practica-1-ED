@@ -129,7 +129,8 @@ public class Administrador extends Investigador {
     public static void GenerarinventarioGeneral(){
        DoubleList usuarios = Main.getUsuarios();
        DoubleNode fir = usuarios.first();
-       String fileName = "BaseDeDatos/InventarioGeneral.txt";
+        File archivo1 = new File ("");
+        String fileName = archivo1.getAbsolutePath() + "/Clases/src/baseDeDatos/InventarioGeneral.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             while (fir != null) {
@@ -148,7 +149,9 @@ public class Administrador extends Investigador {
 
     }
     public static void GenerarControlCambios(DoubleList cambios){
-        String fileName = "baseDeDatos/ControlDeCambios.txt";
+
+        File archivo1 = new File ("");
+        String fileName = archivo1.getAbsolutePath() + "/Clases/src/baseDeDatos/ControlDeCambios.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = cambios.first();
