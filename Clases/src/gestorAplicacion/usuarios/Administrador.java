@@ -129,7 +129,7 @@ public class Administrador extends Investigador {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = cambios.first();
             while (fir != null) {
-                writer.write(fir.getData().imprimirCambios());
+                writer.write(((Solicitud)fir.getData()).imprimirCambios());
                 writer.newLine();
                 fir = fir.getNext();
             }
@@ -144,7 +144,7 @@ public class Administrador extends Investigador {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = agregar.first();
             while (fir != null) {
-                writer.write(fir.getData().imprimiragregar());
+                writer.write(((Solicitud)fir.getData()).toString2());
                 writer.newLine();
                 fir = fir.getNext();
             }
@@ -159,7 +159,7 @@ public class Administrador extends Investigador {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = eliminar.first();
             while (fir != null) {
-                writer.write(fir.getData().imprimiragregar());
+                writer.write(((Solicitud)fir.getData()).toString2());
                 writer.newLine();
                 fir = fir.getNext();
             }

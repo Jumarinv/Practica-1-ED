@@ -188,4 +188,7 @@ public class Solicitud {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    public  String imprimirCambios(){
+        return tipoSolicitud + ":" +equipo.toString();
+    }
 }
