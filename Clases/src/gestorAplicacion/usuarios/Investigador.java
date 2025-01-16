@@ -1,5 +1,6 @@
 package gestorAplicacion.usuarios;
 import gestorAplicacion.administacion.Equipo;
+import gestorAplicacion.administacion.Solicitud;
 import gestorAplicacion.extras.Fecha;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -15,6 +16,8 @@ public class Investigador {
 
     public void solicitudAgregarEquipo(String nombre, long placa, Fecha fechaCompra, long precio) {
         Equipo equipoNuevo = new Equipo(nombre, placa, fechaCompra, precio, investigador.getId());
+        Solicitud solicitud = new Solicitud(investigador,equipoNuevo,"pendiente");
+        investigador.addSolicitudes(solicitud);
         System.out.println("Solicitud de agregar equipo: " + equipoNuevo.toString());
     }
 
