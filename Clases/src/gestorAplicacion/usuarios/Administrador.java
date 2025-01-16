@@ -127,7 +127,7 @@ public class Administrador extends Investigador {
 
     }
     public static void GenerarControlCambios(DoubleList cambios){
-        String fileName = "ControlDeCambios.txt";
+        String fileName = "baseDeDatos/ControlDeCambios.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = cambios.first();
