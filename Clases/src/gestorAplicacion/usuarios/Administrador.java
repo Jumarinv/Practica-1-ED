@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static UIMain.Main.agregarUsuario;
-import static UIMain.Main.usuarios;
+
 
 public class Administrador extends Investigador {
     public static void cambiarContrasena(String idUsuario, String nuevaContrasena, String archivo) throws IOException {
