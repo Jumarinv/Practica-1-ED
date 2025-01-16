@@ -15,6 +15,7 @@ import gestorAplicacion.listas.DoubleNode;
 import gestorAplicacion.usuarios.Usuario;
 
 import static gestorAplicacion.administacion.Solicitud.getC;
+import static gestorAplicacion.administacion.Solicitud.getSolicitudes;
 import static gestorAplicacion.usuarios.Administrador.GenerarControlCambios;
 import static gestorAplicacion.usuarios.Administrador.GenerarinventarioGeneral;
 
@@ -278,9 +279,8 @@ public class Main {
 
                     System.out.println("Guardando");
                     GenerarControlCambios(getC());
-                    imprimirUsuarios();
                     GenerarinventarioGeneral();
-
+                    GenerarSolicitudes();
                     System.exit(1);
                     acceso = false;
 
@@ -308,6 +308,21 @@ public class Main {
     public static void imprimirUsuarios(){
         DoubleList usuarios = getUsuarios();
         String fileName = "BaseDeDatos/Empleados.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            DoubleNode fir = usuarios.first();
+            while (fir != null) {
+                writer.write(((Solicitud)fir.getData()).toString2());
+                writer.newLine();
+                fir = fir.getNext();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + fileName);
+        }
+    }
+    public static void GenerarSolicitudes(){
+        DoubleList solicitudes= getSolicitudes();
+        String fileName = "BaseDeDatos/Solicitudes.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = usuarios.first();
