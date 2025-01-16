@@ -129,7 +129,7 @@ public class Administrador extends Investigador {
     public static void GenerarinventarioGeneral(){
        DoubleList usuarios = Main.getUsuarios();
        DoubleNode fir = usuarios.first();
-       String fileName = "InventarioGeneral.txt";
+       String fileName = "BaseDeDatos/InventarioGeneral.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             while (fir != null) {
@@ -163,7 +163,7 @@ public class Administrador extends Investigador {
 
     }
     public static void GenerarPendientesAgregar(DoubleList agregar){
-        String fileName = "ControlDeCambios.txt";
+        String fileName = "PendientesAgregar.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = agregar.first();
@@ -178,7 +178,7 @@ public class Administrador extends Investigador {
 
     }
     public static void GenerarPendientesEliminar(DoubleList eliminar){
-        String fileName = "ControlDeCambios.txt";
+        String fileName = "PendientesEliminar.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = eliminar.first();

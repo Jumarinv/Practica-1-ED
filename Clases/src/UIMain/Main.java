@@ -1,19 +1,22 @@
 package UIMain;
 
 import gestorAplicacion.administacion.Equipo;
+import gestorAplicacion.administacion.Solicitud;
 import gestorAplicacion.extras.Direccion;
 import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.listas.DoubleList;
 import gestorAplicacion.administacion.Contraseña;
 import gestorAplicacion.usuarios.Funcionalidad;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 import gestorAplicacion.listas.DoubleNode;
 import gestorAplicacion.usuarios.Usuario;
+
+import static gestorAplicacion.administacion.Solicitud.getC;
+import static gestorAplicacion.usuarios.Administrador.GenerarControlCambios;
+import static gestorAplicacion.usuarios.Administrador.GenerarinventarioGeneral;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -274,6 +277,10 @@ public class Main {
                 else if (opcion == 2) {
 
                     System.out.println("Guardando");
+                    GenerarControlCambios(getC());
+                    imprimirUsuarios();
+                    GenerarinventarioGeneral();
+
                     System.exit(1);
                     acceso = false;
 
@@ -297,5 +304,20 @@ public class Main {
     public static void agregarUsuario(Usuario usuario){
         usuarios.addLast(usuario);
 
+    }
+    public static void imprimirUsuarios(){
+        DoubleList usuarios = getUsuarios();
+        String fileName = "BaseDeDatos/Empleados.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            DoubleNode fir = usuarios.first();
+            while (fir != null) {
+                writer.write(((Solicitud)fir.getData()).toString2());
+                writer.newLine();
+                fir = fir.getNext();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + fileName);
+        }
     }
 }
