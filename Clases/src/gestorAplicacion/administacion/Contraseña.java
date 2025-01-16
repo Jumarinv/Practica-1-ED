@@ -14,7 +14,10 @@ public class Contraseña {
 
         this.id = id; this.contraseña = contraseña; this.rol = rol;
     }
+    public String toString2() {
+        return id +":"+ contraseña +":"+ rol;
 
+    }
 
     public String getId() {
         return id;
