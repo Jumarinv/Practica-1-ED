@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Administrador {
+public class Administrador extends Investigador {
     public static void cambiarContrasena(String idUsuario, String nuevaContrasena, String archivo) throws IOException {
         File file = new File(archivo);
         List<String> lineas = new ArrayList<>();
