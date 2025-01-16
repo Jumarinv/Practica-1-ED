@@ -98,7 +98,6 @@ public class Main {
 
                         String nombre = user[0];
                         long id = Long.parseLong(user[1]);
-                        System.out.println(id);
                         String[] tempFecha = user[2].split("/");
                         Fecha fecha = new Fecha(Short.parseShort(tempFecha[0]), Short.parseShort(tempFecha[1]), Short.parseShort(tempFecha[2]));
                         String ciudad = user[3];
