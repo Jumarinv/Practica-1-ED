@@ -19,6 +19,46 @@ public class Equipo {
 
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public long getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(long placa) {
+        this.placa = placa;
+    }
+
+    public Fecha getFechaCompra() {
+        return fechaCompra;
+    }
+
+    public void setFechaCompra(Fecha fechaCompra) {
+        this.fechaCompra = fechaCompra;
+    }
+
+    public long getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(long precio) {
+        this.precio = precio;
+    }
+
+    public long getIdDueño() {
+        return idDueño;
+    }
+
+    public void setIdDueño(long idDueño) {
+        this.idDueño = idDueño;
+    }
+
     @Override
     public String toString() {
         return (nombre+ ":" + placa + ":" + fechaCompra + ":" + precio + ":" + idDueño);

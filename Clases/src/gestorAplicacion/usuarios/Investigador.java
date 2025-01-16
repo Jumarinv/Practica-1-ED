@@ -5,6 +5,8 @@ import gestorAplicacion.extras.Fecha;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
+
 import gestorAplicacion.listas.*;
 
 public class Investigador {
@@ -21,9 +23,20 @@ public class Investigador {
         System.out.println("Solicitud de agregar equipo: " + equipoNuevo.toString());
     }
     public static void mostrarInventario(Usuario investigador){
-
+         DoubleNode temp = investigador.getEquipos().getHead();
+         while(temp != null) {
+             System.out.println(temp.getData());
+             temp = temp.getNext();
+        }
     }
-    public static void solicitudEliminarEquipo(Usuario investigador){
+    public static void solicitudEliminarEquipo(Usuario investigador, long placa){
+        DoubleNode temp = investigador.getEquipos().getHead();
+        while ( temp!= null){
+            Equipo equipo = (Equipo) temp.getData();
+            if(equipo.getPlaca()==placa){
+                Solicitud solicitud = new Solicitud(investigador,equipo,"pendiente");
+            }
+        }
 
     }
 
