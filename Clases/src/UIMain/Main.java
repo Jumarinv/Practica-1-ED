@@ -167,6 +167,29 @@ public class Main {
             ordenar(equipos);
             ordenarEquipos();
 
+            iniciarSesion();
+
+
+
+
+
+        }catch (FileNotFoundException e) {
+
+            System.out.println("Ha ocurrido un error");
+
+        } catch (IOException e) {
+
+            System.out.println("IO Exception");
+        }
+
+
+    }
+
+    public static void iniciarSesion () {
+
+
+        try {
+
             boolean acceso = true;
             Scanner lector = new Scanner(System.in);
 
@@ -249,22 +272,17 @@ public class Main {
                 }
 
 
-                
             }
 
+        }
 
-
-        }catch (FileNotFoundException e) {
-
-            System.out.println("Ha ocurrido un error");
-
-        } catch (IOException e) {
+        catch (IOException e) {
 
             System.out.println("IO Exception");
         }
 
-
     }
+
     public static DoubleList getUsuarios() {
         return usuarios;
     }

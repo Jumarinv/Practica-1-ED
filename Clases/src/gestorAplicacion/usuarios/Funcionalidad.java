@@ -75,6 +75,7 @@ public class Funcionalidad {
 
                     case 7:
 
+                        Main.iniciarSesion();
                         status = false;
                         break;
 
@@ -98,6 +99,7 @@ public class Funcionalidad {
                 System.out.println("13. Consultar control de cambios");
                 System.out.println("14. Consultar solicitudes para agregar");
                 System.out.println("15. Consultar solicitudes para eliminar");
+                System.out.println("16. Salir");
 
                 int opcion = scann.nextInt();
 
@@ -215,6 +217,7 @@ public class Funcionalidad {
                         break;
 
                     case 16:
+                        Main.iniciarSesion();
                         status = false;
                         break;
 
