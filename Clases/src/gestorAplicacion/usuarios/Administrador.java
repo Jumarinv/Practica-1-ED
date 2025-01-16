@@ -17,80 +17,75 @@ import static UIMain.Main.agregarUsuario;
 
 
 public class Administrador extends Investigador {
-    public static void cambiarContrasena(String idUsuario, String nuevaContrasena, String archivo) throws IOException {
-        File file = new File(archivo);
+    public static void cambiarContrasena(String id, String nuevaContraseña, File archivo) {
         List<String> lineas = new ArrayList<>();
-
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                lineas.add(linea);
-            }
-        }
-
         boolean encontrado = false;
-        for (int i = 0; i < lineas.size(); i++) {
-            String[] datos = lineas.get(i).split(" ");
-            if (datos[0].equals(idUsuario)) {
 
-                lineas.set(i, idUsuario + " " + nuevaContrasena + " " + datos[2]);
-                encontrado = true;
-                break;
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(" ");
+                if (partes.length == 3 && partes[0].equals(id)) {
+                    lineas.add(id + " " + nuevaContraseña + " " + partes[2]);
+                    encontrado = true;
+                } else {
+                    lineas.add(linea);
+                }
             }
-        }
-
-        if (!encontrado) {
-            System.out.println("ID no existe.");
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
             return;
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            for (String linea : lineas) {
-                writer.write(linea);
-                writer.newLine();
-            }
-        }
-
-        System.out.println("Contraseña cambiada.");
-    }
-
-    public static void eliminarUsuario(String idUsuario, String archivo) throws IOException {
-        File file = new File(archivo);
-        List<String> lineas = new ArrayList<>();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                lineas.add(linea);
-            }
-        }
-
-        boolean encontrado = false;
-        for (Iterator<String> iter = lineas.iterator(); iter.hasNext(); ) {
-            String linea = iter.next();
-            String[] datos = linea.split(" ");
-            if (datos[1].equals(idUsuario)) {
-                iter.remove();
-                encontrado = true;
-                break;
-            }
-        }
-
         if (!encontrado) {
-            System.out.println("ID no existe.");
+            System.out.println("ID no encontrado en el archivo.");
             return;
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            for (String linea : lineas) {
-                writer.write(linea);
-                writer.newLine();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
+            for (String l : lineas) {
+                bw.write(l);
+                bw.newLine();
             }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + e.getMessage());
+        }
+    }
+
+    public static void eliminarUsuario(String idUsuario, File archivo) {
+        List<String> lineas = new ArrayList<>();
+        boolean eliminado = false;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(" ");
+                if (partes.length > 1 && partes[1].equals(idUsuario)) {
+                    eliminado = true;
+                } else {
+                    lineas.add(linea);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+            return;
         }
 
-        System.out.println("Usuario eliminado.");
+        if (!eliminado) {
+            System.out.println("Usuario no encontrado en el archivo.");
+            return;
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
+            for (String l : lineas) {
+                bw.write(l);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + e.getMessage());
+        }
     }
+
     public static void Generarinventarioinvestigador (Usuario usuario){
         String fileName = "Inventario.txt";
 

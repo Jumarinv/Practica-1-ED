@@ -6,6 +6,7 @@ import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.listas.DoubleList;
 import gestorAplicacion.listas.DoubleNode;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -173,17 +174,25 @@ public class Funcionalidad {
                         break;
 
                     case 5:
+                        File archivo1 = new File ("");
+                        System.out.println(archivo1.getAbsolutePath());
+                        File archivoContraseñas = new File(archivo1.getAbsolutePath()+ "/Clases/src/baseDeDatos/Password.txt");
                         System.out.println("Ingrese id de usuario y la nueva contraseña separada por comas para realizar el cambio de contraseña");
+                        scann.nextLine();
                         String entrada = scann.nextLine();
                         String[] datos1 = entrada.split(",");
-                        cambiarContrasena(datos1[0], datos1[1], "Password.txt");
+                        cambiarContrasena(datos1[0], datos1[1], archivoContraseñas);
 
                         break;
 
                     case 6:
+                        File archivo2= new File ("");
+                        System.out.println(archivo2.getAbsolutePath());
+                        File archivo = new File(archivo2.getAbsolutePath()+ "/Clases/src/baseDeDatos/Empleados.txt");
                         System.out.println("Ingrese el id del usuario que desea eliminar");
+                        scann.nextLine();
                         String entrada1 = scann.nextLine();
-                        eliminarUsuario(entrada1, "Empleado.txt");
+                        eliminarUsuario(entrada1,archivo);
 
                         break;
 
