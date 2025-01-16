@@ -19,7 +19,7 @@ public void GenerarInventario{
     fileName = "Inventario.txt";
 
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-        DoubleNode fir = Usuario.equipos.first();
+        DoubleNode fir = investigador.equipos.first();
         while (fir != null) {
             writer.write(fir.getData().toString());
             writer.newLine();
