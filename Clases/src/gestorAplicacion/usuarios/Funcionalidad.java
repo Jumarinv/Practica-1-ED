@@ -200,6 +200,8 @@ public class Funcionalidad {
 
                     case 7:
 
+                        aceptarDenegar();
+
                         break;
 
                     case 8:
