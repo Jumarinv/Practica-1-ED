@@ -8,6 +8,8 @@ import gestorAplicacion.administacion.Contraseña;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import gestorAplicacion.listas.DoubleNode;
 import gestorAplicacion.usuarios.Usuario;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -81,10 +83,40 @@ public class Main {
             }
 
             boolean acceso = true;
+            Scanner lector = new Scanner(System.in);
 
             while (acceso) {
 
-                
+                DoubleNode temp = contraseñas.getHead();
+
+                while (temp != null){
+
+                    System.out.println("Ingrese su ID");
+                    String id = lector.nextLine();
+                    System.out.println("Ingrese su contraseña");
+                    String contraseña = lector.nextLine();
+
+                    System.out.println(id + " " + contraseña);
+
+                    if (((Contraseña) (temp.getData())).getId().equals(id) && (((Contraseña) (temp.getData())).getContraseña().equals(contraseña)))  {
+
+                        System.out.println("Bienvenido");
+                        Contraseña tempData = (Contraseña) (temp.getData());
+
+
+                    }
+
+                    else {
+
+                        System.out.println("Ingrese un ID y contraseña validos");
+                        continue;
+                    }
+
+
+                    temp = temp.getNext();
+                }
+
+
 
                 
             }
