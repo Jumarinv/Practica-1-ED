@@ -13,7 +13,7 @@ public class Usuario {
     private long tel;
     private String email;
     private Direccion dir;
-    public DoubleList equipos;
+    public  DoubleList equipos;
     private DoubleList solicitudes = new DoubleList();
 
     public Usuario() {

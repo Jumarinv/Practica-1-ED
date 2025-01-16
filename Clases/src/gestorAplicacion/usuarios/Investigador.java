@@ -21,11 +21,11 @@ public class Investigador {
         System.out.println("Solicitud de agregar equipo: " + equipoNuevo.toString());
     }
 
-    public void GenerarInventario (){
+    public static void GenerarInventario (Usuario usuario){
         String fileName = "Inventario.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            DoubleNode fir = investigador.equipos.first();
+            DoubleNode fir = usuario.equipos.first();
             while (fir != null) {
                 writer.write(fir.getData().toString());
                 writer.newLine();
@@ -36,5 +36,7 @@ public class Investigador {
         }
 
     }
-}
+    public static void GenerarSolicitud (Usuario usuario){
 
+    }
+}
