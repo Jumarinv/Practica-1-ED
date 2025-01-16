@@ -33,6 +33,9 @@ public class Investigador {
             Equipo equipo = (Equipo) temp.getData();
             if(equipo.getPlaca()==placa){
                 Solicitud solicitud = new Solicitud(investigador,equipo,"pendiente","Eliminar");
+                System.out.println("Solicitud creada");
+                System.out.println(solicitud);
+                break;
             }
         }
 
