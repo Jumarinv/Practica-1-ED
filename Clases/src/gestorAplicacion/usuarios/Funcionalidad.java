@@ -1,5 +1,6 @@
 package gestorAplicacion.usuarios;
 
+import gestorAplicacion.administacion.Equipo;
 import gestorAplicacion.listas.DoubleList;
 import gestorAplicacion.listas.DoubleNode;
 
@@ -8,9 +9,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Funcionalidad {
-    private DoubleList Solicitudes = new DoubleList();
+    private static DoubleList Solicitudes = new DoubleList();
+    private static Scanner scann = new Scanner (System.in);
 
-    public void mostrarOpciones(String tipoUsuario) {
+    public static void mostrarOpciones(String tipoUsuario, Usuario usuario) {
         if (tipoUsuario.equalsIgnoreCase("investigador")) {
             System.out.println("Opciones para Investigador:");
             System.out.println("1. Consultar lista de equipos en su inventario.");
@@ -19,6 +21,38 @@ public class Funcionalidad {
             System.out.println("4. Consultar el estado de sus solicitudes.");
             System.out.println("5. Generar archivo con su inventario.");
             System.out.println("6. Generar archivo con el estado de sus solicitudes.");
+
+            int opcion = scann.nextInt();
+
+            switch (opcion) {
+
+                case 1:
+
+                    break;
+
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+
+                    break;
+
+                case 5:
+
+                    break;
+
+                case 6:
+
+                    break;
+
+            }
+
+
         } else if (tipoUsuario.equalsIgnoreCase("administrador")) {
             System.out.println("Opciones para Administrador:");
             System.out.println("1. Consultar lista de equipos en su inventario.");
@@ -29,10 +63,70 @@ public class Funcionalidad {
             System.out.println("6. Eliminar un usuario.");
             System.out.println("7. Responder solicitudes de investigadores.");
             System.out.println("8. Generar archivos de control e inventario.");
+
+            int opcion = scann.nextInt();
+
+            switch (opcion) {
+
+                case 1:
+
+                    mostrarLista(usuario);
+
+                    break;
+
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+
+                    break;
+
+                case 5:
+
+                    break;
+
+                case 6:
+
+                    break;
+
+                case 7:
+
+                    break;
+
+                case 8:
+
+                    break;
+
+            }
+
         } else {
             System.out.println("Tipo de usuario no válido. Por favor, ingrese 'investigador' o 'administrador'.");
         }
     }
+
+    public static void mostrarLista (Usuario usuario) {
+
+        DoubleNode temp = usuario.equipos.getHead();
+        int contador = 1;
+        while (temp != null) {
+
+            Equipo equipo = (Equipo) temp.getData();
+
+            System.out.println(contador + ". " + equipo);
+
+            temp = temp.getNext();
+
+            contador++;
+        }
+
+    }
+
+
 
 
 
