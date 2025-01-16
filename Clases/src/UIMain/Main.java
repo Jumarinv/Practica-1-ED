@@ -9,6 +9,7 @@ import gestorAplicacion.usuarios.Funcionalidad;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import gestorAplicacion.listas.DoubleNode;
@@ -226,10 +227,11 @@ public class Main {
         }catch (FileNotFoundException e) {
 
             System.out.println("Ha ocurrido un error");
+
+        } catch (IOException e) {
+
+            System.out.println("IO Exception");
         }
-
-
-
 
 
     }
