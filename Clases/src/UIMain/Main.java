@@ -1,5 +1,6 @@
 package UIMain;
 
+import gestorAplicacion.administacion.Equipo;
 import gestorAplicacion.extras.Direccion;
 import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.listas.DoubleList;
@@ -18,6 +19,7 @@ public class Main {
 
     private static DoubleList usuarios = new DoubleList();
     private static DoubleList contraseñas = new DoubleList();
+    private static DoubleList equipos = new DoubleList();
 
     public void IngresoAdmin () {
 
@@ -82,6 +84,43 @@ public class Main {
 
             }
 
+            File archivoInventario = new File(archivo1.getAbsolutePath()+ "/Clases/src/baseDeDatos/InventarioGeneral.txt");
+            Scanner scanner1 = new Scanner(archivoInventario);
+
+            while (scanner1.hasNextLine()) {
+
+                String[] inventario = scanner1.nextLine().split("\n");
+
+                for (int l = 0; l < inventario.length; l++) {
+
+                    String [] equipo = inventario[l].split(":");
+
+                    String nombre = equipo[0];
+                    long placa = Long.parseLong(equipo[1]);
+                    String [] tempFecha1 = equipo[2].split("/");
+                    Fecha fecha1 = new Fecha (Short.parseShort(tempFecha1[0]), Short.parseShort(tempFecha1[1]), Short.parseShort(tempFecha1[2]));
+                    long precio = Long.parseLong(equipo[3]);
+                    long idDueño = Long.parseLong(equipo[4]);
+
+                    Equipo tempEquipo = new Equipo(nombre, placa, fecha1, precio, idDueño);
+                    equipos.addLast(tempEquipo);
+
+                    DoubleNode tempUser = Main.usuarios.getHead();
+                    while (tempUser != null) {
+
+                        if (((Usuario) (tempUser.getData())).getId() == idDueño) {
+
+                            ((Usuario) (tempUser.getData())).equipos.addLast(tempEquipo);
+                        }
+
+                        tempUser = tempUser.getNext();
+                    }
+
+
+                }
+
+            }
+
             boolean acceso = true;
             Scanner lector = new Scanner(System.in);
 
@@ -102,6 +141,18 @@ public class Main {
 
                         System.out.println("Bienvenido");
                         Contraseña tempData = (Contraseña) (temp.getData());
+
+                        if (tempData.getRol().equals("Administrador")){
+
+                            System.out.println("Ingresaste como administrador");
+                        }
+
+                        else if (tempData.getRol().equals("Investigador")){
+
+                            System.out.println("Ingresaste como investigador");
+
+                        }
+
 
 
                     }

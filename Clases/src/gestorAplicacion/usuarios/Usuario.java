@@ -1,6 +1,7 @@
 package gestorAplicacion.usuarios;
 import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.extras.Direccion;
+import gestorAplicacion.listas.DoubleList;
 
 
 public class Usuario {
@@ -11,6 +12,7 @@ public class Usuario {
     private long tel;
     private String email;
     private Direccion dir;
+    public DoubleList equipos;
 
     public Usuario() {
         super();
@@ -18,6 +20,7 @@ public class Usuario {
     public Usuario(String nombre, long id) {
         Nombre = nombre;
         this.id = id;
+        this.equipos = new DoubleList();
     }
 
 
@@ -30,6 +33,7 @@ public class Usuario {
         this.tel = tel;
         this.email = email;
         this.dir = dir;
+        this.equipos = new DoubleList();
     }
     @Override
     public String toString() {
