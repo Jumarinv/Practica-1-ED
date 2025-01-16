@@ -233,4 +233,7 @@ public class Main {
 
 
     }
+    public static DoubleList getUsuarios() {
+        return usuarios;
+    }
 }

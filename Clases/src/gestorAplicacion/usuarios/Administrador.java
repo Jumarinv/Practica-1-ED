@@ -1,5 +1,8 @@
 package gestorAplicacion.usuarios;
 
+import UIMain.Main;
+import gestorAplicacion.extras.Direccion;
+import gestorAplicacion.extras.Fecha;
 import gestorAplicacion.listas.DoubleList;
 import gestorAplicacion.listas.DoubleNode;
 
@@ -7,6 +10,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 public class Administrador extends Investigador {
     public static void cambiarContrasena(String idUsuario, String nuevaContrasena, String archivo) throws IOException {
@@ -97,7 +101,27 @@ public class Administrador extends Investigador {
             System.out.println("Error al escribir en el archivo: " + fileName);
         }
     }
-    public static void GenerarinventarioGeneral(DoubleList Empleados){
+    public static void GenerarinventarioGeneral(){
+       DoubleList usuarios = Main.getUsuarios();
+       DoubleNode fir = usuarios.first();
+       String fileName = "InventarioGeneral.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            while (fir != null) {
+                DoubleNode fi = ((Usuario)fir.getData()).getEquipos().first();
+                while (fi != null) {
+                    writer.write(fi.getData().toString());
+                    writer.newLine();
+                    fi = fi.getNext();
+                }
+                fir = fir.getNext();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + fileName);
+        }
+
 
     }
 }
+
+
