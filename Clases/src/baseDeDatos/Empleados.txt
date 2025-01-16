@@ -1,2 +1,4 @@
 Juan-Perez:24567898:12/10/1980:Medellin:3003233234:juanperez@edl.edu.co:kr74 4T-35 Boston Medellín No-aplica No-aplica
 Jose-Perez:12321321:11/9/1981:Medellin:3163233234:joseperez@edl.edu.co:kr74 4T-35 Boston Medellín No-aplica No-aplica
+Pepe-Perez:2345934:11/9/1981:Medellin:3163233234:joseperez@edl.edu.co:kr74 4T-35 Boston Medellín No-aplica No-aplica
+

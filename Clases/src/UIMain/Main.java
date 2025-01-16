@@ -93,20 +93,23 @@ public class Main {
 
                 for (int l = 0; l < usuarios.length; l++) {
 
-                    String [] user = usuarios[l].toUpperCase().split(":");
+                    if (!usuarios[l].isEmpty()) {
+                        String[] user = usuarios[l].toUpperCase().split(":");
 
-                    String nombre = user[0];
-                    long id = Long.parseLong(user[1]);
-                    String [] tempFecha = user[2].split("/");
-                    Fecha fecha = new Fecha (Short.parseShort(tempFecha[0]), Short.parseShort(tempFecha[1]), Short.parseShort(tempFecha[2]));
-                    String ciudad = user[3];
-                    Long tel = Long.parseLong(user[4]);
-                    String correo = user[5];
-                    String [] tempdir = user[6].split(" ");
-                    Direccion direccion = new Direccion(tempdir[0],tempdir[1],tempdir[2],tempdir[3],tempdir[4],tempdir[5]);
+                        String nombre = user[0];
+                        long id = Long.parseLong(user[1]);
+                        System.out.println(id);
+                        String[] tempFecha = user[2].split("/");
+                        Fecha fecha = new Fecha(Short.parseShort(tempFecha[0]), Short.parseShort(tempFecha[1]), Short.parseShort(tempFecha[2]));
+                        String ciudad = user[3];
+                        Long tel = Long.parseLong(user[4]);
+                        String correo = user[5];
+                        String[] tempdir = user[6].split(" ");
+                        Direccion direccion = new Direccion(tempdir[0], tempdir[1], tempdir[2], tempdir[3], tempdir[4], tempdir[5]);
 
-                    Usuario tempuser = new Usuario (nombre, id, fecha, ciudad, tel, correo, direccion);
-                    Main.usuarios.addLast(tempuser);
+                        Usuario tempuser = new Usuario(nombre, id, fecha, ciudad, tel, correo, direccion);
+                        Main.usuarios.addLast(tempuser);
+                    }
                 }
             }
 
@@ -119,13 +122,15 @@ public class Main {
 
                 for (int l = 0; l < contras.length; l++) {
 
-                    String [] userpassword = contras[l].split(" ");
+                    if (!contras[l].isEmpty()) {
+                        String[] userpassword = contras[l].split(" ");
 
-                    //Print contraseñas e id
-                    System.out.println(userpassword[0] + " " + userpassword[1]);
+                        //Print contraseñas e id
+                        System.out.println(userpassword[0] + " " + userpassword[1]);
 
-                    Contraseña tempcontraseña = new Contraseña(userpassword[0], userpassword[1], userpassword[2]);
-                    Main.contraseñas.addLast(tempcontraseña);
+                        Contraseña tempcontraseña = new Contraseña(userpassword[0], userpassword[1], userpassword[2]);
+                        Main.contraseñas.addLast(tempcontraseña);
+                    }
 
                 }
 
@@ -140,27 +145,31 @@ public class Main {
 
                 for (int l = 0; l < inventario.length; l++) {
 
-                    String [] equipo = inventario[l].split(":");
+                    if (!inventario[l].isEmpty()) {
 
-                    String nombre = equipo[0];
-                    long placa = Long.parseLong(equipo[1]);
-                    String [] tempFecha1 = equipo[2].split("/");
-                    Fecha fecha1 = new Fecha (Short.parseShort(tempFecha1[0]), Short.parseShort(tempFecha1[1]), Short.parseShort(tempFecha1[2]));
-                    long precio = Long.parseLong(equipo[3]);
-                    long idDueño = Long.parseLong(equipo[4]);
+                        String[] equipo = inventario[l].split(":");
 
-                    Equipo tempEquipo = new Equipo(nombre, placa, fecha1, precio, idDueño);
-                    equipos.addLast(tempEquipo);
+                        String nombre = equipo[0];
+                        long placa = Long.parseLong(equipo[1]);
+                        String[] tempFecha1 = equipo[2].split("/");
+                        Fecha fecha1 = new Fecha(Short.parseShort(tempFecha1[0]), Short.parseShort(tempFecha1[1]), Short.parseShort(tempFecha1[2]));
+                        long precio = Long.parseLong(equipo[3]);
+                        long idDueño = Long.parseLong(equipo[4]);
 
-                    DoubleNode tempUser = Main.usuarios.getHead();
-                    while (tempUser != null) {
+                        Equipo tempEquipo = new Equipo(nombre, placa, fecha1, precio, idDueño);
+                        equipos.addLast(tempEquipo);
 
-                        if (((Usuario) (tempUser.getData())).getId() == idDueño) {
+                        DoubleNode tempUser = Main.usuarios.getHead();
+                        while (tempUser != null) {
 
-                            ((Usuario) (tempUser.getData())).equipos.addLast(tempEquipo);
+                            if (((Usuario) (tempUser.getData())).getId() == idDueño) {
+
+                                ((Usuario) (tempUser.getData())).equipos.addLast(tempEquipo);
+                            }
+
+                            tempUser = tempUser.getNext();
                         }
 
-                        tempUser = tempUser.getNext();
                     }
 
 
