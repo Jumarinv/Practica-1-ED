@@ -6,17 +6,20 @@ public class Solicitud {
     private Usuario usuario;
     private Equipo equipo;
     private String estado;
+    private String tipoSolicitud;
 
     public Solicitud() {
         usuario = null;
         equipo = null;
         estado = null;
+        tipoSolicitud = null;
     }
 
-    public Solicitud(Usuario usuario,Equipo equipo,String estado) {
+    public Solicitud(Usuario usuario,Equipo equipo,String estado,String tipoSolicitud) {
         this.usuario = usuario;
         this.equipo = equipo;
         this.estado = estado;
+        this.tipoSolicitud = tipoSolicitud;
     }
 
     @Override

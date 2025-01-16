@@ -18,7 +18,7 @@ public class Investigador {
 
     public void solicitudAgregarEquipo(String nombre, long placa, Fecha fechaCompra, long precio) {
         Equipo equipoNuevo = new Equipo(nombre, placa, fechaCompra, precio, investigador.getId());
-        Solicitud solicitud = new Solicitud(investigador,equipoNuevo,"pendiente");
+        Solicitud solicitud = new Solicitud(investigador,equipoNuevo,"pendiente","Agregar");
         investigador.addSolicitudes(solicitud);
         System.out.println("Solicitud de agregar equipo: " + equipoNuevo.toString());
     }
@@ -34,7 +34,7 @@ public class Investigador {
         while ( temp!= null){
             Equipo equipo = (Equipo) temp.getData();
             if(equipo.getPlaca()==placa){
-                Solicitud solicitud = new Solicitud(investigador,equipo,"pendiente");
+                Solicitud solicitud = new Solicitud(investigador,equipo,"pendiente","Eliminar");
             }
         }
 
