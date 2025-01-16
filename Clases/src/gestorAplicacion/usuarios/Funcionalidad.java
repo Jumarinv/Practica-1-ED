@@ -96,6 +96,8 @@ public class Funcionalidad {
                 System.out.println("11. Generar archivo de solicitudes pendientes para agregar");
                 System.out.println("12. Generar archivo de solicitudes pendientes para eliminar");
                 System.out.println("13. Consultar control de cambios");
+                System.out.println("14. Consultar solicitudes para agregar");
+                System.out.println("15. Consultar solicitudes para eliminar");
 
                 int opcion = scann.nextInt();
 
@@ -167,8 +169,14 @@ public class Funcionalidad {
                     case 13:
                         ConsultarCambios(getC());
                         break;
-
                     case 14:
+                        Consultaragregar(getA());
+                        break;
+                    case 15:
+                        Consultareliminar(getE());
+                        break;
+
+                    case 16:
                         status = false;
                         break;
 

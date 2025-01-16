@@ -222,6 +222,22 @@ public class Administrador extends Investigador {
      public static void crearUsuario(Scanner scanner){
          agregarUsuario(crearUsuarioDesdeConsola(scanner));
      }
+    public static void Consultaragregar(DoubleList agregar){
+        DoubleNode fir = agregar.first();
+        while(fir != null) {
+            System.out.println(((Solicitud)fir.getData()).imprimirCambios());
+            fir = fir.getNext();
+        }
+    }
+    public static void Consultareliminar(DoubleList eliminar){
+        DoubleNode fir = eliminar.first();
+        while(fir != null) {
+            System.out.println(((Solicitud)fir.getData()).imprimirCambios());
+            fir = fir.getNext();
+        }
+    }
+
+
 }
 
 
