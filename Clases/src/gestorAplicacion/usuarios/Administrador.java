@@ -1,5 +1,6 @@
 package gestorAplicacion.usuarios;
 
+import gestorAplicacion.listas.DoubleList;
 import gestorAplicacion.listas.DoubleNode;
 
 import java.io.*;
@@ -95,5 +96,8 @@ public class Administrador extends Investigador {
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo: " + fileName);
         }
+    }
+    public static void GenerarinventarioGeneral(DoubleList Empleados){
+
     }
 }
