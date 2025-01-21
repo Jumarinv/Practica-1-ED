@@ -32,6 +32,18 @@ public class Solicitud {
         this.estado = estado;
         this.tipoSolicitud = tipoSolicitud;
         Solicitud.solicitudes.addLast(this);
+        Main.getEquiposNoAgregados().addLast(equipo);
+
+        if (tipoSolicitud.equals("agregar")) {
+
+            Solicitud.solicitudesAgregar.addLast(this);
+
+        } else if (tipoSolicitud.equals("eliminar")) {
+
+            Solicitud.solicitudesEliminar.addLast(this);
+
+        }
+
     }
 
     static {
@@ -49,53 +61,56 @@ public class Solicitud {
 
                 for (int l = 0; l < soli.length; l++) {
 
-                    String[] elementosSol = soli[l].split(":");
+                    if (!soli[l].isEmpty()) {
 
-                    DoubleNode temp = Main.getUsuarios().getHead();
+                        String[] elementosSol = soli[l].split(":");
 
-                    while (temp != null) {
+                        DoubleNode temp = Main.getUsuarios().getHead();
 
-                        if (((Usuario) temp.getData()).getId() == Long.parseLong(elementosSol[1])) {
+                        while (temp != null) {
 
-                            break;
+                            System.out.println(elementosSol[1]);
+                            if (((Usuario) temp.getData()).getId() == Long.parseLong(elementosSol[6])) {
+
+                                break;
+
+                            }
+                            temp = temp.getNext();
+                        }
+
+                        Usuario usuario = (Usuario) temp.getData();
+
+                        DoubleNode temp1 = Main.getEquiposNoAgregados().getHead();
+
+                        while (temp1 != null) {
+
+                            if (((Equipo) temp1.getData()).getPlaca() == Long.parseLong(elementosSol[3])) {
+
+                                break;
+
+                            }
+                            temp1 = temp1.getNext();
+                        }
+
+                        Equipo equipo = (Equipo) temp1.getData();
+
+                        String tipoSolicitud = elementosSol[1];
+                        String estado = elementosSol[0];
+
+                        Solicitud tempSolicitud = new Solicitud(usuario, equipo, estado, tipoSolicitud);
+                        Solicitud.solicitudes.addLast(tempSolicitud);
+
+                        if (tipoSolicitud.equals("agregar")) {
+
+                            Solicitud.solicitudesAgregar.addLast(tempSolicitud);
+
+                        } else if (tipoSolicitud.equals("eliminar")) {
+
+                            Solicitud.solicitudesEliminar.addLast(tempSolicitud);
 
                         }
-                        temp = temp.getNext();
-                    }
-
-                    Usuario usuario = (Usuario) temp.getData();
-
-                    DoubleNode temp1 = Main.getUsuarios().getHead();
-
-                    while (temp1 != null) {
-
-                        if (((Equipo) temp1.getData()).getPlaca() == Long.parseLong(elementosSol[3])) {
-
-                            break;
-
-                        }
-                        temp1 = temp1.getNext();
-                    }
-
-                    Equipo equipo = (Equipo) temp1.getData();
-
-                    String tipoSolicitud = elementosSol[7];
-                    String estado = elementosSol[8];
-
-                    Solicitud tempSolicitud = new Solicitud (usuario, equipo, estado, tipoSolicitud);
-                    Solicitud.solicitudes.addLast(tempSolicitud);
-
-                    if (tipoSolicitud.equals("agregar")) {
-
-                        Solicitud.solicitudesAgregar.addLast(tempSolicitud);
-
-                    } else if (tipoSolicitud.equals("eliminar")) {
-
-                        Solicitud.solicitudesEliminar.addLast(tempSolicitud);
 
                     }
-
-
 
                 }
             }
@@ -127,7 +142,7 @@ public class Solicitud {
 
                     Usuario usuario = (Usuario) temp.getData();
 
-                    DoubleNode temp1 = Main.getUsuarios().getHead();
+                    DoubleNode temp1 = Main.getEquiposNoAgregados().getHead();
 
                     while (temp1 != null) {
 

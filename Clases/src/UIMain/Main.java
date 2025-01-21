@@ -26,6 +26,7 @@ public class Main {
     private static DoubleList usuarios = new DoubleList();
     private static DoubleList contraseñas = new DoubleList();
     private static DoubleList equipos = new DoubleList();
+    private static DoubleList equiposNoAgregados = new DoubleList();
 
     public static void ordenarEquipos () {
 
@@ -82,6 +83,8 @@ public class Main {
 
         try {
 
+
+            //Lista de empleados
             File archivo1 = new File ("");
             System.out.println(archivo1.getAbsolutePath());
             File archivo = new File(archivo1.getAbsolutePath()+ "/Clases/src/baseDeDatos/Empleados.txt");
@@ -112,6 +115,8 @@ public class Main {
                 }
             }
 
+            //Lista de contraseñas
+
             File archivoContraseñas = new File(archivo1.getAbsolutePath()+ "/Clases/src/baseDeDatos/Password.txt");
             Scanner scanner = new Scanner(archivoContraseñas);
 
@@ -135,6 +140,7 @@ public class Main {
 
             }
 
+            //Lista de equipos
             File archivoInventario = new File(archivo1.getAbsolutePath()+ "/Clases/src/baseDeDatos/InventarioGeneral.txt");
             Scanner scanner1 = new Scanner(archivoInventario);
 
@@ -175,6 +181,9 @@ public class Main {
                 }
 
             }
+            //lista de Equipos en espera de ser agregados al inventario
+            equiposNoAsignados();
+
             //ordenamiento listas
             ordenar(equipos);
             ordenarEquipos();
@@ -310,6 +319,15 @@ public class Main {
         usuarios.addLast(usuario);
 
     }
+
+    public static DoubleList getEquipos() {
+        return equipos;
+    }
+
+    public static void agregarEquipo(Equipo equipo) {
+        equipos.addLast(equipo);
+    }
+
     public static void imprimirUsuarios(){
         DoubleList usuarios = getUsuarios();
         String fileName = "BaseDeDatos/Empleados.txt";
@@ -340,5 +358,54 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo: " + fileName);
         }
+    }
+
+    //lista de EquiposNoAsignados
+
+    public static void equiposNoAsignados () {
+
+        try {
+
+            File archivo1 = new File ("");
+            File archivoInventario = new File(archivo1.getAbsolutePath()+ "/Clases/src/baseDeDatos/EquiposNoAsignados.txt");
+            Scanner scanner1 = new Scanner(archivoInventario);
+
+            while (scanner1.hasNextLine()) {
+
+                String[] inventario = scanner1.nextLine().split("\n");
+
+                for (int l = 0; l < inventario.length; l++) {
+
+                    if (!inventario[l].isEmpty()) {
+
+                        String[] equipo = inventario[l].split(":");
+
+                        String nombre = equipo[0];
+                        long placa = Long.parseLong(equipo[1]);
+                        String[] tempFecha1 = equipo[2].split("/");
+                        Fecha fecha1 = new Fecha(Short.parseShort(tempFecha1[0]), Short.parseShort(tempFecha1[1]), Short.parseShort(tempFecha1[2]));
+                        long precio = Long.parseLong(equipo[3]);
+                        long idDueño = Long.parseLong(equipo[4]);
+
+                        Equipo tempEquipo = new Equipo(nombre, placa, fecha1, precio, idDueño);
+                        equiposNoAgregados.addLast(tempEquipo);
+
+                    }
+                }
+            }
+        }
+
+        catch (Exception FileNotFoundException ){
+
+            System.out.println("Archivo no encontrado (Equipos Asignados)");
+        }
+    }
+
+    public static DoubleList getEquiposNoAgregados() {
+        return equiposNoAgregados;
+    }
+
+    public static void setEquiposNoAgregados(DoubleList equiposNoAgregados) {
+        Main.equiposNoAgregados = equiposNoAgregados;
     }
 }
