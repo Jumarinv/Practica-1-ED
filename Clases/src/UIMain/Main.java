@@ -15,9 +15,13 @@ import gestorAplicacion.listas.DoubleNode;
 import gestorAplicacion.usuarios.Usuario;
 
 import static gestorAplicacion.administacion.Solicitud.getC;
+<<<<<<< Updated upstream
 import static gestorAplicacion.administacion.Solicitud.getSolicitudes;
 import static gestorAplicacion.usuarios.Administrador.GenerarControlCambios;
 import static gestorAplicacion.usuarios.Administrador.GenerarinventarioGeneral;
+=======
+import static gestorAplicacion.usuarios.Administrador.GenerarControlCambios;
+>>>>>>> Stashed changes
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -293,8 +297,11 @@ public class Main {
 
                     System.out.println("Guardando");
                     GenerarControlCambios(getC());
+<<<<<<< Updated upstream
                     GenerarinventarioGeneral();
                     GenerarSolicitudes();
+=======
+>>>>>>> Stashed changes
                     System.exit(1);
                     acceso = false;
 
