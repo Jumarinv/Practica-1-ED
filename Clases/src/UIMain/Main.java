@@ -295,6 +295,7 @@ public class Main {
                     GenerarControlCambios(getC());
                     GenerarinventarioGeneral();
                     GenerarSolicitudes();
+                    GenerarNoAsignados();
                     System.exit(1);
                     acceso = false;
 
@@ -404,6 +405,23 @@ public class Main {
     public static DoubleList getEquiposNoAgregados() {
         return equiposNoAgregados;
     }
+    public static void GenerarNoAsignados() {
+        DoubleList solicitudes= getEquiposNoAgregados();
+        File archivo1 = new File ("");
+        String fileName = archivo1.getAbsolutePath() + "/Clases/src/baseDeDatos/EquiposNoAsignados.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            DoubleNode fir = Solicitud.getSolicitudes().first();
+            while (fir != null) {
+                writer.write(((Solicitud)fir.getData()).toString2());
+                writer.newLine();
+                fir = fir.getNext();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + fileName);
+        }
+    }
+
 
     public static void setEquiposNoAgregados(DoubleList equiposNoAgregados) {
         Main.equiposNoAgregados = equiposNoAgregados;
