@@ -413,7 +413,7 @@ public class Main {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = equip.first();
             while (fir != null) {
-                writer.write(((Solicitud)fir.getData()).toString());
+                writer.write(((Equipo)fir.getData()).toString());
                 writer.newLine();
                 fir = fir.getNext();
             }
