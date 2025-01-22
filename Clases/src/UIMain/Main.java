@@ -406,14 +406,14 @@ public class Main {
         return equiposNoAgregados;
     }
     public static void GenerarNoAsignados() {
-        DoubleList solicitudes= getEquiposNoAgregados();
+        DoubleList equip = getEquiposNoAgregados();
         File archivo1 = new File ("");
         String fileName = archivo1.getAbsolutePath() + "/Clases/src/baseDeDatos/EquiposNoAsignados.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            DoubleNode fir = Solicitud.getSolicitudes().first();
+            DoubleNode fir = equip.first();
             while (fir != null) {
-                writer.write(((Solicitud)fir.getData()).toString2());
+                writer.write(((Solicitud)fir.getData()).toString());
                 writer.newLine();
                 fir = fir.getNext();
             }
