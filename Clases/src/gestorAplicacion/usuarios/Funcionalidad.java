@@ -336,9 +336,9 @@ public class Funcionalidad {
 
                     if (((Solicitud) temp.getData()).getTipoSolicitud().equals("Agregar")) {
 
-                        ((Solicitud) temp.getData()).getUsuario().getEquipos().addLast(temp);
+                        ((Solicitud) temp.getData()).getUsuario().getEquipos().addLast(((Solicitud) temp.getData()).getEquipo());
                         //Main.ordenar(((Solicitud) temp.getData()).getUsuario().getEquipos());
-                        getSolicitudes().remove(temp);
+                        //getSolicitudes().remove(temp);
                     }
 
                     else if (((Solicitud) temp.getData()).getTipoSolicitud().equals("Eliminar")) {
