@@ -286,11 +286,26 @@ public class Funcionalidad {
 
                     ((Solicitud) temp.getData()).setEstado("aprobada");
                     solicitudesAprobadas.addLast(temp.getData());
+
+                    if (((Solicitud) temp.getData()).getTipoSolicitud().equals("Agregar")) {
+
+                        ((Solicitud) temp.getData()).getUsuario().getEquipos().addLast(temp);
+                        Main.ordenar(((Solicitud) temp.getData()).getUsuario().getEquipos());
+                        getSolicitudes().remove(temp);
+                    }
+
+                    else if (((Solicitud) temp.getData()).getTipoSolicitud().equals("Eliminar")) {
+
+                        ((Solicitud) temp.getData()).getUsuario().getEquipos().remove(temp);
+                        Main.ordenar(((Solicitud) temp.getData()).getUsuario().getEquipos());
+                        getSolicitudes().remove(temp);
+                    }
                 }
 
                 else if (opcion ==  2) {
 
                     ((Solicitud) temp.getData()).setEstado("denegada");
+                    getSolicitudes().remove(temp);
                 }
             }
 

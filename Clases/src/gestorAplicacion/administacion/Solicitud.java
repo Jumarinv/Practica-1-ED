@@ -34,11 +34,11 @@ public class Solicitud {
         Solicitud.solicitudes.addLast(this);
         Main.getEquiposNoAgregados().addLast(equipo);
 
-        if (tipoSolicitud.equals("agregar")) {
+        if (tipoSolicitud.equals("Agregar")) {
 
             Solicitud.solicitudesAgregar.addLast(this);
 
-        } else if (tipoSolicitud.equals("eliminar")) {
+        } else if (tipoSolicitud.equals("Eliminar")) {
 
             Solicitud.solicitudesEliminar.addLast(this);
 
@@ -122,46 +122,49 @@ public class Solicitud {
 
             while (scaneador.hasNextLine()) {
 
-                String[] soli1 = scan.nextLine().split("\n");
+                String[] soli1 = scaneador.nextLine().split("\n");
 
                 for (int l = 0; l < soli1.length; l++) {
 
-                    String[] elementosSol = soli1[l].split(":");
+                    if (!soli1[l].isEmpty()) {
+                        String[] elementosSol = soli1[l].split(":");
 
-                    DoubleNode temp = Main.getUsuarios().getHead();
+                        DoubleNode temp = Main.getUsuarios().getHead();
 
-                    while (temp != null) {
+                        while (temp != null) {
 
-                        if (((Usuario) temp.getData()).getId() == Long.parseLong(elementosSol[1])) {
+                            if (((Usuario) temp.getData()).getId() == Long.parseLong(elementosSol[1])) {
 
-                            break;
+                                break;
 
+                            }
+                            temp = temp.getNext();
                         }
-                        temp = temp.getNext();
-                    }
 
-                    Usuario usuario = (Usuario) temp.getData();
+                        Usuario usuario = (Usuario) temp.getData();
 
-                    DoubleNode temp1 = Main.getEquiposNoAgregados().getHead();
+                        DoubleNode temp1 = Main.getEquiposNoAgregados().getHead();
 
-                    while (temp1 != null) {
+                        while (temp1 != null) {
 
-                        if (((Equipo) temp1.getData()).getPlaca() == Long.parseLong(elementosSol[3])) {
+                            if (((Equipo) temp1.getData()).getPlaca() == Long.parseLong(elementosSol[3])) {
 
-                            break;
+                                break;
 
+                            }
+                            temp1 = temp1.getNext();
                         }
-                        temp1 = temp1.getNext();
+
+                        Equipo equipo = (Equipo) temp1.getData();
+
+                        String tipoSolicitud = elementosSol[7];
+                        String estado = elementosSol[8];
+
+                        Solicitud tempSolicitud = new Solicitud(usuario, equipo, estado, tipoSolicitud);
+                        tempSolicitud.imprimirCambios();
+                        Solicitud.solicitudesAprobadas.addLast(tempSolicitud);
+
                     }
-
-                    Equipo equipo = (Equipo) temp1.getData();
-
-                    String tipoSolicitud = elementosSol[7];
-                    String estado = elementosSol[8];
-
-                    Solicitud tempSolicitud = new Solicitud (usuario, equipo, estado, tipoSolicitud);
-                    Solicitud.solicitudesAprobadas.addLast(tempSolicitud);
-
                 }
             }
         }
@@ -194,6 +197,16 @@ public class Solicitud {
 
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
+    }
+
+    public String getTipoSolicitud () {
+
+        return this.tipoSolicitud;
+    }
+
+    public void setTipoSolicitud (String tipo) {
+
+        this.tipoSolicitud = tipo;
     }
 
     public String getEstado() {
