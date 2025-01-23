@@ -323,14 +323,14 @@ public class Funcionalidad {
                     if (((Solicitud) temp.getData()).getTipoSolicitud().equals("Agregar")) {
 
                         ((Solicitud) temp.getData()).getUsuario().getEquipos().addLast(temp);
-                        Main.ordenar(((Solicitud) temp.getData()).getUsuario().getEquipos());
+                        //Main.ordenar(((Solicitud) temp.getData()).getUsuario().getEquipos());
                         getSolicitudes().remove(temp);
                     }
 
                     else if (((Solicitud) temp.getData()).getTipoSolicitud().equals("Eliminar")) {
 
                         ((Solicitud) temp.getData()).getUsuario().getEquipos().remove(temp);
-                        Main.ordenar(((Solicitud) temp.getData()).getUsuario().getEquipos());
+                        //Main.ordenar(((Solicitud) temp.getData()).getUsuario().getEquipos());
                         getSolicitudes().remove(temp);
                     }
                 }
