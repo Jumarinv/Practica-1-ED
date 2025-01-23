@@ -44,15 +44,48 @@ public class Funcionalidad {
                         break;
 
                     case 2:
-                        System.out.println("Ingresa los datos (nombre, placa, fechaCompra, precio) separados por comas:");
+                        System.out.println("Ingresa los datos nombre, placa(numero), día(numero), mes(numero), año(numero), precio(numero) separados por comas:");
+                        scann.nextLine();
+                        String input = scann.nextLine().trim();
 
-                        String input = scann.nextLine();
+
+                        if (input.isEmpty()) {
+                            System.out.println("Error: No ingresaste datos.");
+                            return;
+                        }
+
+
                         String[] datos = input.split(",");
-                        short dd = Short.parseShort(datos[2]);
-                        short mm = Short.parseShort(datos[3]);
-                        short aa = Short.parseShort(datos[4]);
-                        Fecha fechaCompra = new Fecha(dd, mm, aa);
-                        solicitudAgregarEquipo(usuario, datos[0], Long.parseLong(datos[1]), fechaCompra, Long.parseLong(datos[5]));
+
+
+                        if (datos.length < 6) {
+                            System.out.println("Error: Debes ingresar 6 valores separados por comas.");
+                            System.out.println("Ejemplo: Laptop,ABC123,12,05,2023,2500000");
+                            return;
+                        }
+
+                        try {
+
+                            for (int i = 0; i < datos.length; i++) {
+                                datos[i] = datos[i].trim();
+                            }
+
+
+                            short dd = Short.parseShort(datos[2]);
+                            short mm = Short.parseShort(datos[3]);
+                            short aa = Short.parseShort(datos[4]);
+
+
+                            Fecha fechaCompra = new Fecha(dd, mm, aa);
+
+
+                            solicitudAgregarEquipo(usuario, datos[0], Long.parseLong(datos[1]), fechaCompra, Long.parseLong(datos[5]));
+
+                            System.out.println("Datos procesados correctamente.");
+
+                        } catch (NumberFormatException e) {
+                            System.out.println("Error: Asegúrate de ingresar números válidos para el día, mes, año y precio.");
+                        }
 
                         break;
 
