@@ -16,6 +16,7 @@ import static UIMain.Main.*;
 import static gestorAplicacion.administacion.Solicitud.*;
 import static gestorAplicacion.usuarios.Administrador.*;
 import static gestorAplicacion.usuarios.Investigador.*;
+import static UIMain.Main.getUsuarios;
 
 public class Funcionalidad {
     private static DoubleList Solicitudes = new DoubleList();
@@ -40,7 +41,7 @@ public class Funcionalidad {
                 switch (opcion) {
 
                     case 1:
-                        mostrarInventario(usuario);
+                        mostrarLista(usuario);
                         break;
 
                     case 2:
@@ -126,7 +127,7 @@ public class Funcionalidad {
                 System.out.println("5. Cambiar contraseñas.");
                 System.out.println("6. Eliminar un usuario.");
                 System.out.println("7. Responder solicitudes de investigadores.");
-                System.out.println("8. Generar inventario de investigador");
+                System.out.println("8. Generar inventario del administrador");
                 System.out.println("9. Generar inventario del centro de investigación");
                 System.out.println("10. Generar archivo de control de cambios");
                 System.out.println("11. Generar archivo de solicitudes pendientes para agregar");
@@ -232,6 +233,19 @@ public class Funcionalidad {
                         scann.nextLine();
                         String entrada1 = scann.nextLine();
                         eliminarUsuario(entrada1,archivo,archivoContraseñas2);
+                        DoubleNode temp = getUsuarios().getHead();
+                         while (temp!=null){
+                             Long nid = Long.parseLong(entrada1);
+                             Usuario user = (Usuario) temp.getData();
+                             if(user.getId()==nid){
+                                 getUsuarios().remove(temp);
+                                 break;
+                             }else{
+                                 temp= temp.getNext();
+                             }
+                         }
+
+
 
                         break;
 

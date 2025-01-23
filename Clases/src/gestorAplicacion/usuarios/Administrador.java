@@ -25,7 +25,7 @@ public class Administrador extends Investigador {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split(":");
+                String[] partes = linea.split(" ");
                 if (partes.length == 3 && partes[0].equals(id)) {
                     lineas.add(id + " " + nuevaContraseña + " " + partes[2]);
                     encontrado = true;
@@ -77,7 +77,7 @@ public class Administrador extends Investigador {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo2))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split(":");
+                String[] partes = linea.split(" ");
                 if (partes.length > 1 && partes[0].equals(idUsuario)) {
                     eliminado2 = true;
                 } else {
@@ -114,7 +114,8 @@ public class Administrador extends Investigador {
     }
 
     public static void Generarinventarioinvestigador (Usuario usuario){
-        String fileName = "Inventario.txt";
+        String id = String.valueOf(usuario.getId());
+        String fileName = "Inventario_de_"+usuario.getNombre()+"_"+id+".txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = usuario.equipos.first();
@@ -273,13 +274,16 @@ public class Administrador extends Investigador {
     public static void agregarContraseña(File archivo, Contraseña objeto) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
             bw.write(objeto.getId()+" "+objeto.getContraseña()+" "+objeto.getRol());
+            bw.newLine();
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo: " + e.getMessage());
         }
     }
     public static void agregarUsuarioArchivo(File archivo, Usuario objeto) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
+            //bw.newLine();
             bw.write(objeto.toString());
+            //bw.newLine();
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo: " + e.getMessage());
         }
@@ -291,6 +295,7 @@ public class Administrador extends Investigador {
             fir = fir.getNext();
         }
     }
+
 
 
 }

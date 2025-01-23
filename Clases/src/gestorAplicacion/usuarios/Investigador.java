@@ -36,13 +36,16 @@ public class Investigador {
                 System.out.println("Solicitud creada");
                 System.out.println(solicitud);
                 break;
+            }else{
+                temp = temp.getNext();
             }
         }
 
     }
 
     public static void GenerarInventario (Usuario usuario){
-        String fileName = "Inventario.txt";
+        String id = String.valueOf(usuario.getId());
+        String fileName = "Inventario_de_"+usuario.getNombre()+"_"+id+".txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = usuario.equipos.first();
@@ -57,7 +60,8 @@ public class Investigador {
 
     }
     public static void GenerarSolicitud (Usuario usuario){
-        String fileName = "Solicitudes.txt";
+        String id = String.valueOf(usuario.getId());
+        String fileName = "Estado_Solicitudes_de_"+usuario.getNombre()+"_"+id+".txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             DoubleNode fir = usuario.getSolicitudes().first();
